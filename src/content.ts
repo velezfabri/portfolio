@@ -3,12 +3,22 @@ export const profile = {
   fullName: "Lucas Fabricio Velez",
   title: "Ingeniero Biomédico",
   location: "Córdoba, Argentina",
+  age: 24,
+  origin: "Ushuaia",
   email: "velez.lucasfabricio@gmail.com",
   phone: "+54 2901 588791",
   phoneHref: "tel:+542901588791",
   github: "https://github.com/velezfabri",
   linkedin: "https://www.linkedin.com/in/fabricio-velez/",
   cv: `${import.meta.env.BASE_URL}cv/Fabricio_Velez_CV.pdf`,
+};
+
+export const introduction = {
+  origin:
+    "Tengo 24 años y soy de Ushuaia. A los 17 me mudé a Córdoba para estudiar Ingeniería Biomédica en la UNC. Me recibí en junio de 2026 y me quedé en una ciudad que me encanta.",
+  learning:
+    "Hoy estoy haciendo una diplomatura en Ciencia de Datos. Me entusiasma la inteligencia artificial y todo lo que ya podemos hacer con ella: entender datos, trabajar con imágenes y resolver problemas reales.",
+  interests: ["Inglés", "Jiu-jitsu", "Gimnasio"],
 };
 
 export type ProjectImage = {

@@ -29,7 +29,7 @@ function ProjectGallery({ images }: { images: ProjectImage[] }) {
           ))}
         </div>
       )}
-      <figure className="dialog-figure" id="project-gallery-image">
+      <figure className="dialog-figure" id="project-gallery-image" key={current.src}>
         <a
           href={asset(current.src)}
           target="_blank"

@@ -504,8 +504,10 @@ h2 em {
   border-color: var(--line);
 }
 .project-filters button.selected {
-  background: var(--ink);
-  color: white;
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  font-weight: 700;
 }
 .featured-project {
   display: grid;

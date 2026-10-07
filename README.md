@@ -42,6 +42,8 @@ Pasos completos para GitHub, Vercel y LinkedIn: [docs/DEPLOY.md](docs/DEPLOY.md)
 | `src/components/Hero.tsx`          | Presentación, foto y accesos directos                      |
 | `src/components/ProjectDialog.tsx` | Casos y galería de imágenes                                |
 | `src/components/FadeContent.tsx`   | Entrada animada con movimiento reducido                    |
+| `src/components/PageMotion.tsx`    | Avance por la página, parallax y separador al hacer scroll  |
+| `src/motion.css`                   | Efectos de mouse, transiciones y movimiento reducido       |
 | `src/styles.css`                   | Tipografía, encuadre de foto y diseño responsive           |
 | `public/cv/Fabricio_Velez_CV.pdf`  | CV original elegido por el usuario                         |
 | `docs/design-system.md`            | Decisiones de diseño y límites de contenido                |

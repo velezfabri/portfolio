@@ -1,0 +1,332 @@
+/* UI/UX Pro Max: readable theme pairs, scroll continuity, responsive feedback. */
+:root {
+  --motion-fast: 180ms;
+  --motion-hover: 280ms;
+  --motion-enter: 520ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --hover-shadow: 0 12px 30px rgb(15 41 30 / 10%);
+}
+html[data-theme="dark"] {
+  --hover-shadow: 0 12px 30px rgb(0 0 0 / 26%);
+}
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 90;
+  pointer-events: none;
+}
+.hero {
+  align-items: center;
+}
+.hero-intro {
+  color: var(--ink);
+  font-weight: 600;
+  margin-top: 24px;
+}
+.hero-intro .hero-intro-note {
+  display: block;
+  color: var(--body);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-top: 5px;
+}
+.hero-biography {
+  max-width: 505px;
+}
+.hero-description {
+  max-width: none;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-top: 14px;
+}
+.personal-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 19px;
+}
+.personal-details li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.personal-details li::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.hero-visual {
+  align-self: center;
+}
+.portrait-frame {
+  overflow: hidden;
+}
+.portrait-frame img {
+  transition: transform 650ms var(--motion-ease);
+}
+.portrait-label > strong {
+  transition: transform var(--motion-hover) var(--motion-ease);
+}
+.chapter-bridge {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 0 0 35px;
+}
+.chapter-bridge > .eyebrow {
+  color: var(--muted);
+  font-size: 10px;
+}
+.chapter-bridge-line {
+  height: 1px;
+  flex: 1;
+  background: var(--accent);
+  transform-origin: left center;
+  opacity: 0.7;
+}
+.chapter-bridge > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.chapter-bridge svg,
+.hero-bottom svg {
+  transition: transform var(--motion-hover) var(--motion-ease);
+}
+.project-filters {
+  gap: 8px;
+}
+.project-filters button {
+  color: var(--body);
+  transition:
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    border-color var(--motion-fast),
+    transform var(--motion-fast) var(--motion-ease);
+}
+.project-filters button:hover:not(.selected) {
+  background: var(--soft);
+}
+.project-filters button.selected,
+.project-filters button.selected:hover,
+.project-filters button.selected:focus-visible {
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.project-results {
+  animation: results-enter 360ms var(--motion-ease) both;
+}
+.featured-figure > button {
+  overflow: hidden;
+  border-radius: 3px;
+}
+.project-thumbnail img,
+.featured-figure img {
+  transition: transform 550ms var(--motion-ease);
+  transform-origin: center;
+}
+.featured-figure img {
+  /* Leave a little space so enlargement never cuts off image labels. */
+  width: 96%;
+  margin-inline: auto;
+}
+.project-card,
+.area-card {
+  transition:
+    transform var(--motion-hover) var(--motion-ease),
+    border-color var(--motion-hover),
+    box-shadow var(--motion-hover);
+}
+.button,
+.icon-button,
+.nav-cv,
+.header-cv,
+.gallery-controls button,
+.figure-expand,
+.thumbnail-expand {
+  transition:
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    border-color var(--motion-fast),
+    transform var(--motion-hover) var(--motion-ease),
+    box-shadow var(--motion-hover);
+}
+.button svg,
+.icon-button svg,
+.nav-cv svg,
+.github-line > svg:last-child,
+.contact-links a svg:last-child,
+.hero-direct-contact svg,
+.card-top > svg {
+  transition: transform var(--motion-hover) var(--motion-ease);
+}
+.button:active,
+.icon-button:active,
+.project-filters button:active {
+  transform: scale(0.97);
+}
+.project-thumbnail:focus-visible img,
+.featured-figure > button:focus-visible img {
+  transform: scale(1.035);
+}
+.project-card:focus-within,
+.area-card:focus-within {
+  border-color: var(--accent);
+}
+.project-dialog[open] {
+  animation: dialog-enter var(--motion-enter) var(--motion-ease) both;
+}
+.project-dialog[open]::backdrop {
+  animation: backdrop-enter var(--motion-fast) ease-out both;
+}
+.project-gallery .dialog-figure {
+  animation: gallery-enter 320ms var(--motion-ease) both;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .portrait-frame:hover img {
+    transform: scale(1.035);
+  }
+  .portrait-frame:hover .portrait-label > strong {
+    transform: translateX(4px);
+  }
+  .project-card:hover,
+  .area-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: var(--hover-shadow);
+  }
+  .project-card:hover .card-top > svg {
+    transform: translate(3px, -3px);
+  }
+  .project-thumbnail:hover img,
+  .featured-figure > button:hover img {
+    transform: scale(1.04);
+  }
+  .project-thumbnail:hover .thumbnail-expand {
+    transform: translate(-2px, -2px);
+  }
+  .button:hover,
+  .nav-cv:hover,
+  .header-cv:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--hover-shadow);
+  }
+  .button:hover svg:last-child,
+  .nav-cv:hover svg,
+  .github-line:hover > svg:last-child,
+  .contact-links a:hover svg:last-child {
+    transform: translate(3px, -3px);
+  }
+  .icon-button:hover svg {
+    transform: scale(1.12);
+  }
+  .theme-toggle:hover svg {
+    transform: rotate(22deg);
+  }
+  .chapter-bridge > a:hover svg,
+  .hero-bottom a:hover svg {
+    transform: translateY(4px);
+  }
+  .project-filters button:hover {
+    transform: translateY(-2px);
+  }
+}
+@keyframes results-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes dialog-enter {
+  from { opacity: 0; transform: translateY(22px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes gallery-enter {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 850px) {
+  .hero {
+    grid-template-columns: 1fr 0.85fr;
+    gap: 0 25px;
+  }
+  .hero-intro .hero-intro-note {
+    font-size: 16px;
+  }
+  .chapter-bridge {
+    gap: 18px;
+  }
+}
+@media (max-width: 650px) {
+  .hero {
+    align-items: stretch;
+  }
+  .hero-intro {
+    margin-top: 23px;
+  }
+  .hero-description {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .personal-details {
+    margin-top: 16px;
+  }
+  .chapter-bridge {
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    padding-bottom: 25px;
+  }
+  .chapter-bridge > .eyebrow {
+    flex: 1 1 100%;
+    font-size: 9px;
+  }
+  .chapter-bridge-line {
+    max-width: 60px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    display: none;
+  }
+  .project-results,
+  .project-dialog[open],
+  .project-dialog[open]::backdrop,
+  .project-gallery .dialog-figure {
+    animation: none;
+  }
+  .portrait-frame img,
+  .project-thumbnail img,
+  .featured-figure img,
+  .button,
+  .icon-button,
+  .project-filters button,
+  .project-card,
+  .area-card {
+    transition: none;
+    transform: none;
+  }
+  .project-thumbnail:focus-visible img,
+  .featured-figure > button:focus-visible img,
+  .button:active,
+  .icon-button:active,
+  .project-filters button:active {
+    transform: none;
+  }
+}

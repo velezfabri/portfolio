@@ -1,23 +1,27 @@
 // React Bits / AnimatedContent, adapted from David Haz's component.
 // Source and license: THIRD_PARTY.md.
-import { useEffect, useRef, type HTMLAttributes } from "react";
+import { createElement, useEffect, useRef, type HTMLAttributes } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Props = HTMLAttributes<HTMLDivElement> & {
+type Props = HTMLAttributes<HTMLElement> & {
+  as?: "div" | "article";
   distance?: number;
   delay?: number;
+  replay?: boolean;
 };
 
 export function AnimatedContent({
   children,
-  distance = 38,
+  as = "div",
+  distance = 44,
   delay = 0,
+  replay = false,
   ...props
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
@@ -29,14 +33,20 @@ export function AnimatedContent({
         {
           y: 0,
           opacity: 1,
-          duration: 0.9,
+          duration: 0.75,
           delay,
           ease: "power3.out",
           clearProps: "opacity,transform",
-          scrollTrigger: { trigger: element, start: "top 94%", once: true },
+          scrollTrigger: {
+            trigger: element,
+            start: "top 88%",
+            once: !replay,
+            toggleActions: "play none none reverse",
+          },
         },
       );
       const reveal = () => {
+        animation.scrollTrigger?.kill();
         animation.progress(1);
       };
       element.addEventListener("focusin", reveal);
@@ -47,10 +57,6 @@ export function AnimatedContent({
     return () => {
       media.revert();
     };
-  }, [distance, delay]);
-  return (
-    <div ref={ref} {...props}>
-      {children}
-    </div>
-  );
+  }, [distance, delay, replay]);
+  return createElement(as, { ...props, ref }, children);
 }

@@ -8,7 +8,7 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
-import { profile } from "../content";
+import { introduction, profile } from "../content";
 import { SplitText } from "./SplitText";
 import { AnimatedContent } from "./AnimatedContent";
 
@@ -38,15 +38,18 @@ export function Hero() {
           />
         </h1>
         <p className="hero-intro">
-          Tecnología médica.
-          <br />
-          <span>Datos e IA con aplicación.</span>
+          Soy Fabricio.
+          <span className="hero-intro-note"> Salud, datos y muchas ganas de aprender.</span>
         </p>
-        <p className="hero-description">
-          Trabajo con equipamiento médico, calidad y datos. Desarrollo proyectos
-          que conectan imágenes médicas, análisis e inteligencia artificial con
-          problemas de salud.
-        </p>
+        <div className="hero-biography">
+          <p className="hero-description">{introduction.origin}</p>
+          <p className="hero-description">{introduction.learning}</p>
+        </div>
+        <ul className="personal-details" aria-label="Un poco más sobre mí">
+          {introduction.interests.map((interest) => (
+            <li key={interest}>{interest}</li>
+          ))}
+        </ul>
         <div className="hero-actions">
           <a
             className="button button-dark"
@@ -86,13 +89,13 @@ export function Hero() {
           <span className="hero-location-separator" aria-hidden="true">
             /
           </span>
-          <span>UNC · 2026</span>
+          <span>De {profile.origin} a Córdoba</span>
         </div>
       </div>
       <AnimatedContent className="hero-visual" delay={0.1} distance={42}>
         <figure className="hero-portrait">
           <div className="portrait-topline">
-            <span className="eyebrow">DE LA INGENIERÍA A LOS DATOS</span>
+            <span className="eyebrow">UN POCO DE QUIÉN SOY</span>
             <span className="portrait-coordinate" aria-hidden="true">
               01 / FV
             </span>
@@ -107,8 +110,8 @@ export function Hero() {
             />
             <div className="portrait-overlay" aria-hidden="true" />
             <div className="portrait-label">
-              <span>FORMACIÓN EN SALUD</span>
-              <strong>Mirada tecnológica.</strong>
+              <span>FABRICIO VELEZ · {profile.age} AÑOS</span>
+              <strong>De Ushuaia a Córdoba.</strong>
             </div>
           </div>
           <figcaption>
@@ -119,7 +122,7 @@ export function Hero() {
             <span className="portrait-caption-note">
               GRADUADO
               <br />
-              <strong>2026</strong>
+              <strong>JUN. 2026</strong>
             </span>
           </figcaption>
         </figure>

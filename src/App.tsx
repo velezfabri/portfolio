@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  ArrowDown,
   ArrowDownToLine,
   ArrowRight,
   ArrowUpRight,
@@ -17,6 +18,8 @@ import { ProjectDialog } from "./components/ProjectDialog";
 import { Tags } from "./components/Tags";
 import { Hero } from "./components/Hero";
 import { FadeContent } from "./components/FadeContent";
+import { AnimatedContent } from "./components/AnimatedContent";
+import { PageMotion } from "./components/PageMotion";
 import { Header } from "./components/Header";
 import { Areas } from "./components/Areas";
 import { SpotlightCard } from "./components/SpotlightCard";
@@ -60,9 +63,18 @@ export default function App() {
         Saltar al contenido
       </a>
       <Header />
+      <PageMotion contentKey={filter} />
       <main id="contenido">
         <Hero />
         <Areas />
+        <div className="chapter-bridge container">
+          <span className="eyebrow">DE QUIÉN SOY A LO QUE HAGO</span>
+          <span className="chapter-bridge-line" aria-hidden="true" />
+          <a href="#proyectos">
+            Ahora, los proyectos
+            <ArrowDown size={18} aria-hidden="true" />
+          </a>
+        </div>
         <section
           className="projects-section section"
           id="proyectos"
@@ -100,6 +112,7 @@ export default function App() {
                         key={option}
                         className={filter === option ? "selected" : ""}
                         aria-pressed={filter === option}
+                        aria-controls="project-results"
                         onClick={() => setFilter(option)}
                       >
                         {option === "IA" ? "Inteligencia artificial" : option}
@@ -112,8 +125,9 @@ export default function App() {
                 </div>
               </div>
             </FadeContent>
+            <div className="project-results" id="project-results" key={filter}>
             {selected.some((project) => project.id === "segmentacion") && (
-              <article className="featured-project">
+              <AnimatedContent as="article" className="featured-project" distance={48}>
                 <div className="featured-copy">
                   <span className="eyebrow">01 / DEEP LEARNING · 2026</span>
                   <h3>{featured.subtitle}</h3>
@@ -179,16 +193,18 @@ export default function App() {
                     predicción de segmentos de Couinaud.
                   </figcaption>
                 </figure>
-              </article>
+              </AnimatedContent>
             )}
             <div className="project-grid">
               {selected
                 .filter((project) => project.id !== "segmentacion")
-                .map((project) => (
+                .map((project, index) => (
                   <SpotlightCard
                     as="article"
                     className={`project-card project-${project.id}`}
                     key={project.id}
+                    reveal
+                    delay={index * 0.045}
                   >
                     <div className="card-top">
                       <span className="eyebrow">
@@ -235,6 +251,7 @@ export default function App() {
                   </SpotlightCard>
                 ))}
             </div>
+            </div>
             <a
               className="github-line"
               href={profile.github}
@@ -263,7 +280,7 @@ export default function App() {
               <span className="section-aside">TECNOLOGÍA EN EL MUNDO REAL</span>
             </div>
             <div className="experience-layout">
-              <div className="experience-intro">
+              <AnimatedContent className="experience-intro" distance={40}>
                 <h2 id="experience-title">
                   Primero,
                   <br />
@@ -283,10 +300,10 @@ export default function App() {
                   Recorrido completo en el CV
                   <ArrowUpRight size={18} />
                 </a>
-              </div>
-              <FadeContent className="timeline">
+              </AnimatedContent>
+              <div className="timeline">
                 {experience.map((item, index) => (
-                  <article className="timeline-item" key={item.company}>
+                  <AnimatedContent as="article" className="timeline-item" key={item.company} distance={32} delay={index * 0.045}>
                     <div className="timeline-marker" aria-hidden="true">
                       0{index + 1}
                     </div>
@@ -297,9 +314,9 @@ export default function App() {
                       <p className="timeline-description">{item.description}</p>
                       <Tags tags={item.tags} />
                     </div>
-                  </article>
+                  </AnimatedContent>
                 ))}
-              </FadeContent>
+              </div>
             </div>
           </div>
         </section>
@@ -317,7 +334,7 @@ export default function App() {
                 UNA FORMACIÓN, VARIAS FORMAS DE APORTAR
               </span>
             </div>
-            <div className="about-layout">
+            <FadeContent className="about-layout">
               <h2 id="about-title">
                 Ingeniería con
                 <br />
@@ -325,9 +342,10 @@ export default function App() {
               </h2>
               <div className="about-copy">
                 <p className="about-lead">
-                  Soy ingeniero biomédico graduado de la Universidad Nacional de
-                  Córdoba. Me interesa entender cómo funcionan las cosas y cómo
-                  mejorarlas con tecnología.
+                  Me gusta entender un problema y llevarlo a algo que funcione.
+                  En mi tesis desarrollé modelos de deep learning para segmentar
+                  el hígado en tomografías; en otros proyectos trabajé con
+                  datos clínicos, indicadores y visualizaciones.
                 </p>
                 <p>
                   Busco oportunidades en tecnología médica, servicio técnico,
@@ -341,8 +359,8 @@ export default function App() {
                   y explicar sus resultados.
                 </p>
               </div>
-            </div>
-            <div className="education-row">
+            </FadeContent>
+            <AnimatedContent className="education-row" distance={30}>
               <div className="education-label">
                 <span className="eyebrow">FORMACIÓN</span>
                 <span>Aprender y aplicar.</span>
@@ -359,7 +377,7 @@ export default function App() {
                 <h3>Diplomatura en Data Science</h3>
                 <p>Mundos E + Universidad Nacional de Córdoba</p>
               </div>
-            </div>
+            </AnimatedContent>
           </div>
         </section>
         <section
@@ -377,7 +395,7 @@ export default function App() {
                 Disponible para oportunidades
               </span>
             </div>
-            <div className="contact-heading">
+            <FadeContent className="contact-heading">
               <h2 id="contact-title">
                 ¿Trabajamos
                 <br />
@@ -387,7 +405,7 @@ export default function App() {
                 Si buscás un perfil que combine ingeniería biomédica y datos,
                 conversemos. Podés escribirme o llamarme directamente.
               </p>
-            </div>
+            </FadeContent>
             <div className="email-row">
               <a href={`mailto:${profile.email}`}>
                 {profile.email}

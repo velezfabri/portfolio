@@ -6,11 +6,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type FadeContentProps = HTMLAttributes<HTMLDivElement> & { duration?: number };
+type FadeContentProps = HTMLAttributes<HTMLDivElement> & {
+  duration?: number;
+  replay?: boolean;
+};
 
 export function FadeContent({
   children,
-  duration = 0.65,
+  duration = 0.7,
+  replay = true,
   ...props
 }: FadeContentProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,18 +28,24 @@ export function FadeContent({
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const animation = gsap.fromTo(
         element,
-        { opacity: 0, y: 14 },
+        { opacity: 0, y: 36 },
         {
           opacity: 1,
           y: 0,
           duration,
-          ease: "power2.out",
+          ease: "power3.out",
           clearProps: "opacity,transform",
-          scrollTrigger: { trigger: element, start: "top 92%", once: true },
+          scrollTrigger: {
+            trigger: element,
+            start: "top 86%",
+            once: !replay,
+            toggleActions: "play none none reverse",
+          },
         },
       );
       // Keyboard navigation must never land on visually hidden content.
       const revealOnFocus = () => {
+        animation.scrollTrigger?.kill();
         animation.progress(1);
       };
       element.addEventListener("focusin", revealOnFocus);
@@ -47,7 +57,7 @@ export function FadeContent({
     return () => {
       media.revert();
     };
-  }, [duration]);
+  }, [duration, replay]);
 
   return (
     <div ref={ref} {...props}>

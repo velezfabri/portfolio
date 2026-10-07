@@ -3,6 +3,7 @@ import { capabilities } from "../content";
 import { AnimatedContent } from "./AnimatedContent";
 import { SpotlightCard } from "./SpotlightCard";
 import { Tags } from "./Tags";
+import { FadeContent } from "./FadeContent";
 
 export function Areas() {
   return (
@@ -12,7 +13,7 @@ export function Areas() {
       aria-labelledby="areas-title"
     >
       <div className="container">
-        <div className="areas-heading">
+        <FadeContent className="areas-heading">
           <div>
             <p className="eyebrow">PERFIL TÉCNICO / TRES FORMAS DE APORTAR</p>
             <h2 id="areas-title">Salud, datos y procesos.</h2>
@@ -21,13 +22,13 @@ export function Areas() {
             Ver mi experiencia
             <ArrowRight size={17} aria-hidden="true" />
           </a>
-        </div>
+        </FadeContent>
         <div className="areas-grid">
           {capabilities.map((item, index) => (
             <AnimatedContent
               key={item.title}
-              delay={index * 0.09}
-              distance={30}
+              delay={index * 0.045}
+              distance={42}
             >
               <SpotlightCard as="article" className="area-card">
                 <span className="area-number">0{index + 1}</span>
