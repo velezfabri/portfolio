@@ -23,3 +23,15 @@ Estas referencias se consultaron para tomar decisiones; no se copiaron datos per
 ## Contenido propio
 
 El CV y la foto de graduación fueron proporcionados por Fabricio Velez. Las imágenes de proyectos proceden de sus repositorios de GitHub. La imagen de reingresos está identificada como una vista estática recreada para la documentación. No se reutilizó la foto ni el contenido personal del portfolio de referencia.
+
+## Componentes incorporados en la actualización
+
+Se integró código adaptado de estos componentes oficiales de React Bits, de David Haz. Se conserva la licencia MIT + Commons Clause en `public/licenses/ReactBits-LICENSE.md`.
+
+- [SplitText](https://github.com/DavidHDev/react-bits/blob/main/src/ts-default/TextAnimations/SplitText/SplitText.tsx): mismo plugin GSAP SplitText; adaptado a `useEffect`, sin dependencia adicional de `@gsap/react`, y con soporte de movimiento reducido.
+- [AnimatedContent](https://github.com/DavidHDev/react-bits/blob/main/src/ts-default/Animations/AnimatedContent/AnimatedContent.tsx): desplazamiento y opacidad al entrar; sin desaparición automática ni contenido oculto antes de inicializar.
+- [SpotlightCard](https://github.com/DavidHDev/react-bits/blob/main/src/ts-default/Components/SpotlightCard/SpotlightCard.tsx): posición del cursor mediante variables CSS y gradiente radial; admite tarjetas semánticas `article` y desactiva el efecto con movimiento reducido.
+
+La dirección visual se contrastó con el HTML y CSS públicos de [Juan Pablo Rojo](https://jpr-web-mu.vercel.app/es): fondo oscuro, jerarquía grande, imágenes integradas y pipelines de proyectos. La paleta, la tipografía y el contenido son propios de este portfolio.
+
+[UUPM](https://uupm.cc/) corresponde a UI/UX Pro Max. Se ejecutó su búsqueda de sistema de diseño; no se exige instalar esa herramienta a los visitantes ni a quien publica esta actualización.

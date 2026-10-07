@@ -21,6 +21,7 @@ export type ProjectImage = {
 };
 
 export type Project = {
+  pipeline: string[];
   id: string;
   number: string;
   category: "IA" | "Datos";
@@ -39,6 +40,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "segmentacion",
+    pipeline: ["Tomografía", "Hígado", "Couinaud", "Visualización"],
     number: "01",
     category: "IA",
     title: "De una tomografía a un mapa anatómico.",
@@ -69,6 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: "reingresos",
+    pipeline: ["Datos clínicos", "SQL", "Métricas", "Power BI"],
     number: "02",
     category: "Datos",
     title: "Reingresos hospitalarios",
@@ -106,6 +109,7 @@ export const projects: Project[] = [
   },
   {
     id: "enfr",
+    pipeline: ["ENFR 2018", "Ponderación", "Análisis en R", "Shiny"],
     number: "03",
     category: "Datos",
     title: "Salud pública en perspectiva",
@@ -160,6 +164,7 @@ export const projects: Project[] = [
   },
   {
     id: "chatbot",
+    pipeline: ["Síntomas", "Modelos", "Random Forest", "Streamlit"],
     number: "04",
     category: "IA",
     title: "Aprender con machine learning",

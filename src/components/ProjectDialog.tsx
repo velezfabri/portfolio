@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ExternalLink, FileText, Mail, X } from "lucide-react";
 import { profile, type Project, type ProjectImage } from "../content";
 import { Tags } from "./Tags";
+import { ProjectPipeline } from "./ProjectPipeline";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 
@@ -102,6 +103,7 @@ export function ProjectDialog({
           </div>
           <h2 id="project-dialog-title">{project.subtitle}</h2>
           <Tags tags={project.tags} />
+          <ProjectPipeline steps={project.pipeline} />
           {project.id === "segmentacion" && (
             <figure className="dialog-figure">
               <img

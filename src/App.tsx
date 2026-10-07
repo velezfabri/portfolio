@@ -10,32 +10,20 @@ import {
   GitFork,
   ContactRound,
   Mail,
-  Menu,
   Phone,
-  X,
 } from "lucide-react";
-import {
-  capabilities,
-  experience,
-  profile,
-  projects,
-  type Project,
-} from "./content";
+import { experience, profile, projects, type Project } from "./content";
 import { ProjectDialog } from "./components/ProjectDialog";
 import { Tags } from "./components/Tags";
 import { Hero } from "./components/Hero";
 import { FadeContent } from "./components/FadeContent";
+import { Header } from "./components/Header";
+import { Areas } from "./components/Areas";
+import { SpotlightCard } from "./components/SpotlightCard";
+import { ProjectPipeline } from "./components/ProjectPipeline";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
-const nav = [
-  { id: "proyectos", label: "Proyectos" },
-  { id: "experiencia", label: "Experiencia" },
-  { id: "sobre-mi", label: "Sobre mí" },
-  { id: "contacto", label: "Contacto" },
-];
-
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("Todos");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [copied, setCopied] = useState(false);
@@ -51,14 +39,6 @@ export default function App() {
     },
     [],
   );
-  useEffect(() => {
-    if (!menuOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [menuOpen]);
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(profile.email);
@@ -79,70 +59,10 @@ export default function App() {
       <a className="skip-link" href="#contenido">
         Saltar al contenido
       </a>
-      <header className="site-header">
-        <div className="container header-inner">
-          <a
-            className="wordmark"
-            href="#inicio"
-            aria-label="Fabricio Velez, inicio"
-            onClick={() => setMenuOpen(false)}
-          >
-            <span className="monogram">
-              fv<span>.</span>
-            </span>
-            <span className="wordmark-name">
-              Fabricio Velez<span>INGENIERO BIOMÉDICO</span>
-            </span>
-          </a>
-          <div className="mobile-header-actions">
-            <a
-              className="header-cv"
-              href={profile.cv}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              CV
-              <FileText size={17} aria-hidden="true" />
-            </a>
-            <button
-              className="menu-toggle icon-button"
-              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={menuOpen}
-              aria-controls="principal-nav"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-          <nav
-            id="principal-nav"
-            className={`nav ${menuOpen ? "nav-open" : ""}`}
-            aria-label="Navegación principal"
-          >
-            {nav.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-            <a
-              className="nav-cv"
-              href={profile.cv}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-            >
-              Ver CV
-              <ArrowUpRight size={16} />
-            </a>
-          </nav>
-        </div>
-      </header>
+      <Header />
       <main id="contenido">
         <Hero />
+        <Areas />
         <section
           className="projects-section section"
           id="proyectos"
@@ -161,9 +81,9 @@ export default function App() {
             <FadeContent>
               <div className="section-heading">
                 <h2 id="projects-title">
-                  Lo que puedo
+                  Del problema
                   <br />
-                  <em>construir.</em>
+                  <em>al resultado.</em>
                 </h2>
                 <div className="projects-intro">
                   <p>
@@ -199,6 +119,7 @@ export default function App() {
                   <h3>{featured.subtitle}</h3>
                   <p>{featured.description}</p>
                   <Tags tags={featured.tags} />
+                  <ProjectPipeline steps={featured.pipeline} />
                   <dl className="project-metrics">
                     <div>
                       <dt>Dice · hígado</dt>
@@ -264,7 +185,8 @@ export default function App() {
               {selected
                 .filter((project) => project.id !== "segmentacion")
                 .map((project) => (
-                  <article
+                  <SpotlightCard
+                    as="article"
                     className={`project-card project-${project.id}`}
                     key={project.id}
                   >
@@ -301,6 +223,7 @@ export default function App() {
                     )}
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
+                    <ProjectPipeline steps={project.pipeline} />
                     <Tags tags={project.tags} />
                     <button
                       className="text-link card-link"
@@ -309,7 +232,7 @@ export default function App() {
                       Explorar proyecto
                       <ArrowRight size={17} />
                     </button>
-                  </article>
+                  </SpotlightCard>
                 ))}
             </div>
             <a
@@ -418,16 +341,6 @@ export default function App() {
                   y explicar sus resultados.
                 </p>
               </div>
-            </div>
-            <div className="capability-grid">
-              {capabilities.map((item, index) => (
-                <article key={item.title}>
-                  <span className="capability-number">0{index + 1}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                  <Tags tags={item.tools} />
-                </article>
-              ))}
             </div>
             <div className="education-row">
               <div className="education-label">

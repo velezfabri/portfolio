@@ -2,7 +2,7 @@
 
 Portfolio de un ingeniero biomédico, con experiencia en servicio técnico y calidad y proyectos de datos e IA. El CV, GitHub y contacto están disponibles desde el inicio; los casos muestran imágenes, herramientas, aportes y resultados de cada proyecto.
 
-React + TypeScript + Vite. Sitio estático, sin servidor, base de datos ni variables de entorno. Tipografía Manrope alojada con la web, iconos Lucide y una adaptación de FadeContent de React Bits con GSAP.
+React + TypeScript + Vite. Sitio estático, sin servidor, base de datos ni variables de entorno. Tipografía Manrope alojada con la web, iconos Lucide y SplitText, AnimatedContent, SpotlightCard y FadeContent de React Bits, adaptados con GSAP.
 
 ## Desarrollo de la versión portable
 
@@ -21,6 +21,12 @@ npm run build
 ```
 
 La salida de producción queda en `dist/`. La navegación usa anclas y los casos de proyecto se abren en un diálogo nativo. El CV abre directamente como PDF.
+
+## Actualizar el sitio publicado
+
+Repositorio: [velezfabri/portfolio](https://github.com/velezfabri/portfolio). Página: [portfolio-six-navy-88.vercel.app](https://portfolio-six-navy-88.vercel.app/).
+
+Para subir esta actualización desde GitHub y mantener el proyecto de Vercel existente: [docs/ACTUALIZAR.md](docs/ACTUALIZAR.md).
 
 ## Publicar
 

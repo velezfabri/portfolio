@@ -1,14 +1,26 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      try {
+        const theme = localStorage.getItem("fabricio-theme");
+        if (theme === "light" || theme === "dark")
+          document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f5f3ed" />
+    <meta name="theme-color" content="#101714" />
     <meta
       name="description"
       content="Fabricio Velez, ingeniero biomédico en Córdoba. Experiencia en tecnología médica, servicio técnico y calidad. Proyectos de datos e inteligencia artificial. CV, GitHub y contacto."
     />
     <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://portfolio-six-navy-88.vercel.app/"
+    />
+    <link rel="canonical" href="https://portfolio-six-navy-88.vercel.app/" />
     <meta
       property="og:title"
       content="Fabricio Velez · Ingeniería biomédica & datos"

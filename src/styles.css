@@ -1808,19 +1808,3 @@ h2 em {
     transform: none;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-portrait {
-    animation: portrait-enter 0.8s cubic-bezier(0.2, 0.65, 0.3, 1) both;
-  }
-}
-@keyframes portrait-enter {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
