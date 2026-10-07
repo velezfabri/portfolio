@@ -7,10 +7,8 @@ import {
   Check,
   Copy,
   ExternalLink,
-  FileText,
   GitFork,
   ContactRound,
-  Mail,
   Phone,
 } from "lucide-react";
 import { experience, profile, projects, type Project } from "./content";
@@ -24,6 +22,8 @@ import { Header } from "./components/Header";
 import { Areas } from "./components/Areas";
 import { SpotlightCard } from "./components/SpotlightCard";
 import { ProjectPipeline } from "./components/ProjectPipeline";
+import { Statement } from "./components/Statement";
+import { SegmentationExplorer } from "./components/SegmentationExplorer";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 export default function App() {
@@ -66,41 +66,22 @@ export default function App() {
       <PageMotion contentKey={filter} />
       <main id="contenido">
         <Hero />
+        <Statement />
         <Areas />
-        <div className="chapter-bridge container">
-          <span className="eyebrow">DE QUIÉN SOY A LO QUE HAGO</span>
-          <span className="chapter-bridge-line" aria-hidden="true" />
-          <a href="#proyectos">
-            Ahora, los proyectos
-            <ArrowDown size={18} aria-hidden="true" />
-          </a>
-        </div>
         <section
           className="projects-section section"
           id="proyectos"
           aria-labelledby="projects-title"
         >
           <div className="container">
-            <div className="section-top">
-              <span className="eyebrow">
-                <span className="section-number">01</span> PROYECTOS
-                SELECCIONADOS
-              </span>
-              <span className="section-aside">
-                CÓDIGO + ANÁLISIS + APLICACIÓN
-              </span>
-            </div>
             <FadeContent>
               <div className="section-heading">
-                <h2 id="projects-title">
-                  Del problema
-                  <br />
-                  <em>al resultado.</em>
-                </h2>
+                <p className="eyebrow section-label">Proyectos seleccionados</p>
+                <h2 id="projects-title">Del problema al resultado.</h2>
                 <div className="projects-intro">
                   <p>
-                    Proyectos que conectan problemas de salud con análisis,
-                    modelos e interfaces para explorar los resultados.
+                    Imágenes médicas, datos clínicos y salud pública. Cuatro
+                    proyectos para ver cómo pienso, construyo y evalúo.
                   </p>
                   <div
                     className="project-filters"
@@ -126,131 +107,109 @@ export default function App() {
               </div>
             </FadeContent>
             <div className="project-results" id="project-results" key={filter}>
-            {selected.some((project) => project.id === "segmentacion") && (
-              <AnimatedContent as="article" className="featured-project" distance={48}>
-                <div className="featured-copy">
-                  <span className="eyebrow">01 / DEEP LEARNING · 2026</span>
-                  <h3>{featured.subtitle}</h3>
-                  <p>{featured.description}</p>
-                  <Tags tags={featured.tags} />
-                  <ProjectPipeline steps={featured.pipeline} />
-                  <dl className="project-metrics">
-                    <div>
-                      <dt>Dice · hígado</dt>
-                      <dd>
-                        97,63<span>%</span>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>Dice macro · segmentos</dt>
-                      <dd>
-                        81,56<span>%</span>
-                      </dd>
-                    </div>
-                  </dl>
-                  <p className="metric-context">
-                    Resultados en el conjunto de test. Evaluación externa en
-                    seis casos clínicos.
-                  </p>
-                  <div className="project-actions">
-                    <button
-                      className="text-link"
-                      onClick={() => setActiveProject(featured)}
-                    >
-                      Ver el caso completo
-                      <ArrowRight size={18} />
-                    </button>
-                    <a
-                      className="icon-button"
-                      aria-label="Abrir código de segmentación en GitHub"
-                      href={featured.links![0].href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <GitFork size={21} />
-                    </a>
-                  </div>
-                </div>
-                <figure className="featured-figure">
-                  <button
-                    onClick={() => setActiveProject(featured)}
-                    aria-label="Ampliar resultado y ver el proyecto de segmentación"
-                  >
-                    <img
-                      src={asset("resultado-test.png")}
-                      alt="Resultado de segmentación en una tomografía de test: la referencia manual se compara con la predicción de Couinaud."
-                      width="2048"
-                      height="947"
-                      loading="lazy"
-                    />
-                    <span className="figure-expand">
-                      <ExternalLink size={16} />
-                      Ver detalle
-                    </span>
-                  </button>
-                  <figcaption>
-                    Tomografía del conjunto de test · referencia manual y
-                    predicción de segmentos de Couinaud.
-                  </figcaption>
-                </figure>
-              </AnimatedContent>
-            )}
-            <div className="project-grid">
-              {selected
-                .filter((project) => project.id !== "segmentacion")
-                .map((project, index) => (
-                  <SpotlightCard
-                    as="article"
-                    className={`project-card project-${project.id}`}
-                    key={project.id}
-                    reveal
-                    delay={index * 0.045}
-                  >
-                    <div className="card-top">
-                      <span className="eyebrow">
-                        {project.number} / {project.category} · 2026
-                      </span>
-                      <ArrowUpRight size={21} aria-hidden="true" />
-                    </div>
-                    {project.images?.length ? (
-                      <button
-                        className="project-thumbnail"
-                        onClick={() => setActiveProject(project)}
-                        aria-label={`Ver imágenes de ${project.title}`}
-                      >
-                        <img
-                          src={asset(project.images[0].src)}
-                          alt={project.images[0].alt}
-                          width={project.images[0].width}
-                          height={project.images[0].height}
-                          loading="lazy"
-                        />
-                        <span className="thumbnail-expand" aria-hidden="true">
-                          <ExternalLink size={14} />
-                        </span>
-                      </button>
-                    ) : (
-                      <div className="project-word-art" aria-hidden="true">
-                        <span>
-                          ML<span className="art-dot">.</span>
-                        </span>
-                        <span className="art-small">41 clases</span>
+              {selected.some((project) => project.id === "segmentacion") && (
+                <AnimatedContent as="article" className="featured-project" distance={48}>
+                  <div className="featured-copy">
+                    <p className="project-type">Deep learning · Proyecto final UNC</p>
+                    <h3>{featured.title}</h3>
+                    <p>{featured.description}</p>
+                    <Tags tags={featured.tags} />
+                    <dl className="project-metrics">
+                      <div>
+                        <dt>Dice · hígado</dt>
+                        <dd>
+                          97,63<span>%</span>
+                        </dd>
                       </div>
-                    )}
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <ProjectPipeline steps={project.pipeline} />
-                    <Tags tags={project.tags} />
-                    <button
-                      className="text-link card-link"
-                      onClick={() => setActiveProject(project)}
+                      <div>
+                        <dt>Dice macro · segmentos</dt>
+                        <dd>
+                          81,56<span>%</span>
+                        </dd>
+                      </div>
+                    </dl>
+                    <p className="metric-context">
+                      Resultados en el conjunto de test. Evaluación externa en
+                      seis casos clínicos. Evaluación académica, sin validación
+                      para uso clínico autónomo.
+                    </p>
+                    <div className="project-actions">
+                      <button
+                        className="button button-dark"
+                        onClick={() => setActiveProject(featured)}
+                      >
+                        Ver el caso completo
+                        <ArrowRight size={18} />
+                      </button>
+                      <a
+                        className="icon-button"
+                        aria-label="Abrir código de segmentación en GitHub"
+                        href={featured.links![0].href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <GitFork size={21} />
+                      </a>
+                    </div>
+                  </div>
+                  <SegmentationExplorer />
+                </AnimatedContent>
+              )}
+              <div className="project-grid">
+                {selected
+                  .filter((project) => project.id !== "segmentacion")
+                  .map((project, index) => (
+                    <SpotlightCard
+                      as="article"
+                      className={`project-card project-${project.id}`}
+                      key={project.id}
+                      reveal
+                      delay={index * 0.045}
                     >
-                      Explorar proyecto
-                      <ArrowRight size={17} />
-                    </button>
-                  </SpotlightCard>
-                ))}
-            </div>
+                      <div className="card-top">
+                        <span className="project-type">
+                          {project.category === "IA" ? "Machine learning" : "Análisis de datos"}
+                        </span>
+                        <ArrowUpRight size={21} aria-hidden="true" />
+                      </div>
+                      {project.images?.length ? (
+                        <button
+                          className="project-thumbnail"
+                          onClick={() => setActiveProject(project)}
+                          aria-label={`Ver imágenes de ${project.title}`}
+                        >
+                          <img
+                            src={asset(project.images[0].src)}
+                            alt={project.images[0].alt}
+                            width={project.images[0].width}
+                            height={project.images[0].height}
+                            loading="lazy"
+                          />
+                          <span className="thumbnail-expand" aria-hidden="true">
+                            <ExternalLink size={14} />
+                          </span>
+                        </button>
+                      ) : (
+                        <button className="project-preview-text" onClick={() => setActiveProject(project)} aria-label="Ver el proyecto educativo de clasificación de síntomas">
+                          <span>4.920</span>
+                          <span>registros de síntomas<br />41 enfermedades</span>
+                          <ArrowUpRight size={26} aria-hidden="true" />
+                        </button>
+                      )}
+                      <h3>{project.title}</h3>
+                      <p>{project.description}</p>
+                      <ProjectPipeline steps={project.pipeline} />
+                      <Tags tags={project.tags} />
+                      <button
+                        className="text-link card-link"
+                        onClick={() => setActiveProject(project)}
+                      >
+                        Explorar proyecto
+                        <ArrowRight size={17} />
+                      </button>
+                    </SpotlightCard>
+                  ))}
+              </div>
             </div>
             <a
               className="github-line"
@@ -273,23 +232,14 @@ export default function App() {
           aria-labelledby="experience-title"
         >
           <div className="container">
-            <div className="section-top">
-              <span className="eyebrow">
-                <span className="section-number">02</span> EXPERIENCIA
-              </span>
-              <span className="section-aside">TECNOLOGÍA EN EL MUNDO REAL</span>
-            </div>
             <div className="experience-layout">
               <AnimatedContent className="experience-intro" distance={40}>
                 <h2 id="experience-title">
-                  Primero,
-                  <br />
-                  <em>el problema real.</em>
+                  Ingeniería en el mundo real.
                 </h2>
                 <p>
-                  Mi experiencia en servicio técnico e ingeniería clínica me
-                  enseñó a trabajar con equipos, procesos y documentación en
-                  entornos de salud.
+                  Servicio técnico e ingeniería clínica: trabajar con equipos,
+                  documentar cada intervención y entender las necesidades de un entorno de salud.
                 </p>
                 <a
                   className="text-link"
@@ -304,14 +254,14 @@ export default function App() {
               <div className="timeline">
                 {experience.map((item, index) => (
                   <AnimatedContent as="article" className="timeline-item" key={item.company} distance={32} delay={index * 0.045}>
-                    <div className="timeline-marker" aria-hidden="true">
-                      0{index + 1}
-                    </div>
                     <div>
                       <p className="eyebrow timeline-period">{item.period}</p>
                       <h3>{item.company}</h3>
                       <p className="timeline-role">{item.role}</p>
-                      <p className="timeline-description">{item.description}</p>
+                      <details className="experience-detail">
+                        <summary>Qué hice <ArrowDown size={16} aria-hidden="true" /></summary>
+                        <p className="timeline-description">{item.description}</p>
+                      </details>
                       <Tags tags={item.tags} />
                     </div>
                   </AnimatedContent>
@@ -326,37 +276,19 @@ export default function App() {
           aria-labelledby="about-title"
         >
           <div className="container">
-            <div className="section-top">
-              <span className="eyebrow">
-                <span className="section-number">03</span> SOBRE MÍ
-              </span>
-              <span className="section-aside">
-                UNA FORMACIÓN, VARIAS FORMAS DE APORTAR
-              </span>
-            </div>
             <FadeContent className="about-layout">
               <h2 id="about-title">
-                Ingeniería con
-                <br />
-                <em>mirada de datos.</em>
+                Aprender.<br /><em>Y aplicarlo.</em>
               </h2>
               <div className="about-copy">
                 <p className="about-lead">
-                  Me gusta entender un problema y llevarlo a algo que funcione.
-                  En mi tesis desarrollé modelos de deep learning para segmentar
-                  el hígado en tomografías; en otros proyectos trabajé con
-                  datos clínicos, indicadores y visualizaciones.
+                  La IA ya forma parte del presente. Me interesa entenderla,
+                  usarla con criterio y convertir lo aprendido en herramientas útiles.
                 </p>
                 <p>
-                  Busco oportunidades en tecnología médica, servicio técnico,
-                  calidad y funciones de datos e IA, tanto en salud como en
-                  otros sectores. También me interesa seguir desarrollándome en
-                  el área regulatoria.
-                </p>
-                <p>
-                  Mi forma de trabajar combina criterio técnico, análisis y
-                  documentación: entender el problema, desarrollar una solución
-                  y explicar sus resultados.
+                  Busco oportunidades en datos e IA, tecnología médica, servicio
+                  técnico y calidad. En salud y también en otros sectores.
+                  Quiero seguir aprendiendo sobre el área regulatoria.
                 </p>
               </div>
             </FadeContent>
@@ -386,25 +318,21 @@ export default function App() {
           aria-labelledby="contact-title"
         >
           <div className="container">
-            <div className="section-top">
-              <span className="eyebrow">
-                <span className="section-number">04</span> CONTACTO
-              </span>
-              <span className="availability">
-                <span aria-hidden="true" />
-                Disponible para oportunidades
-              </span>
+            <div className="availability">
+              <span aria-hidden="true" /> Disponible para oportunidades
             </div>
             <FadeContent className="contact-heading">
-              <h2 id="contact-title">
-                ¿Trabajamos
-                <br />
-                <em>juntos?</em>
-              </h2>
-              <p>
-                Si buscás un perfil que combine ingeniería biomédica y datos,
-                conversemos. Podés escribirme o llamarme directamente.
-              </p>
+              <div>
+                <h2 id="contact-title">Hablemos.</h2>
+                <p>
+                  ¿Una oportunidad, un proyecto o una buena idea?
+                  Me gustaría conocerla.
+                </p>
+              </div>
+              <a className="contact-orbit" href={`mailto:${profile.email}`}>
+                <ArrowUpRight size={36} aria-hidden="true" />
+                <span>Escribime</span>
+              </a>
             </FadeContent>
             <div className="email-row">
               <a href={`mailto:${profile.email}`}>

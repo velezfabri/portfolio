@@ -21,41 +21,6 @@ export function PageMotion({ contentKey }: { contentKey: string }) {
         },
       );
 
-      document.querySelectorAll<HTMLElement>(".section-top").forEach((element) => {
-        gsap.fromTo(
-          element,
-          { y: 20, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.55,
-            ease: "power3.out",
-            clearProps: "opacity,transform",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 92%",
-              once: true,
-            },
-          },
-        );
-      });
-      const bridgeLine = document.querySelector(".chapter-bridge-line");
-      if (bridgeLine) {
-        gsap.fromTo(
-          bridgeLine,
-          { scaleX: 0.08 },
-          {
-            scaleX: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".chapter-bridge",
-              start: "top 95%",
-              end: "top 40%",
-              scrub: 0.4,
-            },
-          },
-        );
-      }
     });
 
     media.add(
@@ -75,6 +40,21 @@ export function PageMotion({ contentKey }: { contentKey: string }) {
     );
 
     return () => media.revert();
+  }, []);
+
+  useEffect(() => {
+    const main = document.querySelector("main");
+    let frame = 0;
+    const refreshAfterDisclosure = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+    };
+    // Native details change the heights of the sections below the timeline.
+    main?.addEventListener("toggle", refreshAfterDisclosure, true);
+    return () => {
+      main?.removeEventListener("toggle", refreshAfterDisclosure, true);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {

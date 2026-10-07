@@ -1,38 +1,38 @@
 # Actualizar el portfolio que ya publicaste
 
-Repositorio actual: https://github.com/velezfabri/portfolio
+Repositorio: https://github.com/velezfabri/portfolio
 
-Página pública actual: https://portfolio-six-navy-88.vercel.app/
+Página pública: https://portfolio-six-navy-88.vercel.app/
 
-## Desde el navegador, sin instalar programas
+## Desde GitHub, sin instalar programas
 
-1. Descargar y descomprimir `portfolio-animaciones-y-presentacion.zip`.
-2. Abrir el repositorio actual en GitHub y elegir **Add file → Upload files**.
-3. Arrastrar **el contenido de la carpeta descomprimida**. Las carpetas `src` y `docs` deben quedar en la raíz del repositorio, junto a `index.html` y `README.md`. Los archivos con el mismo nombre reemplazan su versión anterior. No crear una carpeta adicional dentro del repositorio.
-4. Confirmar con **Commit changes** en la rama que Vercel utiliza para producción.
-5. Abrir el proyecto en Vercel y esperar a que el nuevo despliegue termine. El repositorio ya está conectado; no hace falta crear otro proyecto.
-6. Abrir tu página pública y probar el recorrido por las secciones, los efectos al pasar el mouse, los tres filtros en ambos temas y los detalles de los proyectos.
+1. Descargar y descomprimir `portfolio-cult-ui-y-taste.zip`.
+2. Abrir el repositorio y elegir **Add file → Upload files**.
+3. Arrastrar el contenido descomprimido: `src`, `docs`, `public` y `THIRD_PARTY.md` deben quedar en la raíz del repositorio. Reemplazar los archivos con el mismo nombre; no crear una carpeta contenedora adicional.
+4. Confirmar con **Commit changes** en la rama conectada con Vercel.
+5. Esperar a que el despliegue de Vercel termine y abrir la página pública.
 
-El ZIP incluye los archivos cambiados y los nuevos. No contiene `node_modules`, credenciales ni una copia del CV o de las fotos. Las dependencias no cambiaron: Vercel seguirá usando el `package.json` y el `package-lock.json` existentes.
+El ZIP incluye únicamente archivos cambiados o añadidos. No incluye `node_modules`, credenciales, dependencias nuevas, ni duplicados del CV y de las fotografías. Dentro de `public` están la fuente pixelada y las licencias nuevas, necesarias para esta actualización.
 
-## Cambios visibles
+## Qué cambia
 
-- Presentación en primera persona junto a tu foto: Ushuaia, Córdoba, tu graduación, la diplomatura, IA e intereses personales.
-- Animaciones al llegar a proyectos, experiencia, formación y contacto, además de un separador animado entre perfil y proyectos.
-- Fotografía con movimiento suave durante el scroll en escritorio y barra de avance superior.
-- Zoom en imágenes, elevación de tarjetas y movimiento en flechas y botones.
-- Animaciones breves al filtrar proyectos, abrir sus detalles y cambiar de imagen.
-- Filtros legibles en modo oscuro y claro, también al seleccionar y al pasar el mouse.
-- Compatibilidad con la preferencia de movimiento reducido del dispositivo.
+- Nombre en gran escala, frase breve y CV/contacto desde la primera vista.
+- Historia personal conservada en la primera sección junto al recorrido de tu fotografía.
+- Párrafo de Cult UI con revelación de palabras al hacer scroll y un capítulo breve fijado solo en escritorio.
+- Áreas asimétricas y proyectos con más espacio y mejor jerarquía.
+- Comparación deslizante entre referencia manual y predicción del proyecto hepático; etapas del proceso seleccionables.
+- Experiencia con desplegables y contacto destacado, respetando el modo claro u oscuro.
 
-## Verificación de esta entrega
+## Comprobación después de publicar
 
-- `npm run build` incluye `npm run typecheck` y produce la salida Vite para Vercel.
-- Se comprueban el contraste numérico de los filtros, los recursos y anclas del HTML renderizado y la conservación del CV y de la foto.
-- No se ejecutó una prueba visual completa en navegador de esta actualización. Después de publicar, revisar escritorio y celular y probar el movimiento reducido en el dispositivo.
+1. Revisar en computadora y celular el nombre, la foto y los botones de CV/contacto.
+2. Recorrer el capítulo pixelado, volver arriba y usar las anclas del menú.
+3. Probar Todos, Inteligencia artificial y Datos en ambos temas.
+4. Mover la comparación con mouse, touch y flechas de teclado; recorrer las cuatro etapas.
+5. Abrir los casos, las imágenes de ENFR y los desplegables de experiencia; cerrar los diálogos con Escape.
+6. Probar correo, teléfono, copia de email y CV.
+7. Activar movimiento reducido en el dispositivo: el texto debe seguir visible y el scroll funcionar sin fijado.
 
-## Continuar editando con IA
+La compilación, TypeScript, los recursos/anclas y el contraste numérico fueron comprobados. Queda pendiente la revisión visual en navegador y Lighthouse. Detalle en `docs/analisis-frontend.md`.
 
-El contexto está en `AGENTS.md`, los criterios visuales en `docs/design-system.md` y las fuentes/licencias en `THIRD_PARTY.md`. El código que se publica no depende de instalar UI/UX Pro Max.
-
-Base de esta actualización: commit `816a54a` del repositorio del usuario. Si modificaste estos mismos archivos después, revisar sus diferencias antes de reemplazarlos.
+Base de esta actualización: commit `ab11b33`. Si editaste estos archivos después, revisar sus diferencias antes de reemplazarlos. El código publicado no depende de instalar Taste Skill ni UI/UX Pro Max.

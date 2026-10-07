@@ -60,3 +60,7 @@ La foto de graduación y el PDF se conservan sin modificar. Las imágenes de pro
 Las métricas incluyen contexto de evaluación. Las referencias de diseño y las licencias se documentan en [THIRD_PARTY.md](THIRD_PARTY.md).
 
 El checkout de revisión conserva la integración de Sites. `scripts/export-vercel.mjs` genera una copia independiente con las dependencias necesarias para Vercel y excluye la identidad y los archivos internos del alojamiento de revisión.
+
+## Actualización editorial y Cult UI
+
+Presentación con nombre y acciones visibles, capítulo de texto pixelado con scroll, comparación real de segmentación y nueva jerarquía de proyectos y contacto. Ver `docs/ACTUALIZAR.md` para publicar y `docs/analisis-frontend.md` para decisiones y verificación. Las dependencias de producción permanecen iguales.

@@ -35,3 +35,13 @@ Se integró código adaptado de estos componentes oficiales de React Bits, de Da
 La dirección visual se contrastó con el HTML y CSS públicos de [Juan Pablo Rojo](https://jpr-web-mu.vercel.app/es): fondo oscuro, jerarquía grande, imágenes integradas y pipelines de proyectos. La paleta, la tipografía y el contenido son propios de este portfolio.
 
 [UUPM](https://uupm.cc/) corresponde a UI/UX Pro Max. Se ejecutó su búsqueda de sistema de diseño; no se exige instalar esa herramienta a los visitantes ni a quien publica esta actualización.
+
+## Cult UI, Geist Pixel y revisión editorial
+
+- **Cult UI: PixelParagraphInverse**, Copyright (c) 2023 Jordan-Gilliam. Adaptación de [pixel-paragraph-words-inverse.tsx](https://github.com/nolly-studio/cult-ui/blob/main/apps/www/registry/default/ui/pixel-paragraph-words-inverse.tsx) en `src/components/PixelParagraphInverse.tsx`. Se conserva el algoritmo de coincidencia de frases y se adapta a CSS nativo, Manrope y Geist Pixel Square, con palabras separadas para animación. Licencia MIT en `public/licenses/CultUI-LICENSE.md`. [Documentación](https://www.cult-ui.com/docs/components/pixel-paragraph-words-inverse).
+- **Geist Pixel Square**, Vercel en colaboración con basement.studio. Archivo original de la distribución oficial `geist@1.7.2`, alojado con el sitio y usado únicamente en el párrafo de transición. [Fuente oficial](https://vercel.com/font). SIL Open Font License 1.1 en `public/licenses/Geist-OFL.txt`.
+- **Taste Skill / design-taste-frontend**, [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill). Se utilizó para analizar el frontend y decidir jerarquía, variedad de composiciones, texto, estados de interacción y continuidad de tema. Es una herramienta de desarrollo; no una dependencia ni un recurso descargado por los visitantes.
+- **Darpan Jain**, [portfolio](https://darpanjain.com/), y **Mitchell Sparrow**, [portfolio](https://www.mitchellsparrow.com/): referencias de organización de proyectos técnicos y relato personal. No se copian sus datos ni sus imágenes.
+- **DESIGN.md del usuario**, referencia editorial inspirada en Dennis Snellenberg: escala, espacio y formas de controles. Se aplica conservando la identidad y los recursos originales de Fabricio.
+
+La animación del párrafo y la comparación deslizante son implementaciones propias con GSAP y controles nativos. La comparación encuadra en CSS los dos paneles de la imagen original `resultado-test.png`; no altera ese archivo. La imagen completa y su leyenda se conservan en el detalle del proyecto.

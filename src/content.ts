@@ -177,7 +177,7 @@ export const projects: Project[] = [
     pipeline: ["Síntomas", "Modelos", "Random Forest", "Streamlit"],
     number: "04",
     category: "IA",
-    title: "Aprender con machine learning",
+    title: "Clasificar síntomas incompletos",
     subtitle: "Chatbot educativo sobre enfermedades",
     description:
       "Preparación de datos y comparación de clasificadores multiclase para un proyecto educativo con Streamlit.",
@@ -197,7 +197,7 @@ export const projects: Project[] = [
 
 export const experience = [
   {
-    period: "MAR — JUN 2025",
+    period: "MAR - JUN 2025",
     company: "Droguería Salud Renal",
     role: "Pasante de Ingeniería Biomédica · Servicio Técnico",
     description:
@@ -205,7 +205,7 @@ export const experience = [
     tags: ["Servicio técnico", "Equipamiento médico", "Calidad"],
   },
   {
-    period: "ABR — JUL 2024",
+    period: "ABR - JUL 2024",
     company: "Hospital Italiano Córdoba",
     role: "Practicante de Bioingeniería Clínica",
     description:
