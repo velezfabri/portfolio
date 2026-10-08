@@ -23,7 +23,7 @@ Lectura de Taste Skill: portfolio técnico con una presentación personal y una 
 4. **Galería común:** cuadrícula 2×2, una columna debajo de 768 px; filtros y cuatro tarjetas con una sola acción nativa que cubre su superficie. No hay relato obligatorio antes de la galería. El detalle compacto tiene cabecera sticky y un solo scroll; el medio aparece antes de herramientas y texto. Segmentación abre directamente el video original; ENFR conserva Mapa, Resumen y Comparaciones.
 5. **Experiencia profesional:** instituciones y tareas en desplegables, con enlace al CV.
 6. **Habilidades:** cuatro grupos en dos columnas, una en móvil, después de experiencia. Cada herramienta enlaza al caso o experiencia correspondiente. Una nota tipográfica explica el aprendizaje autodidacta en agentic engineering y la construcción con IA y vibe coding.
-7. **Contacto:** correo, copia de dirección, teléfono, LinkedIn, GitHub y CV.
+7. **Contacto:** «Escribime» y el número de teléfono abren WhatsApp. Correo, copia de dirección, LinkedIn, GitHub y CV siguen disponibles.
 
 ## Movimiento
 

@@ -251,7 +251,7 @@ export default function App() {
                   Me gustaría conocerla.
                 </p>
               </div>
-              <a className="contact-orbit" href={`mailto:${profile.email}`}>
+              <a className="contact-orbit" href={profile.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Escribime por WhatsApp">
                 <ArrowUpRight size={36} aria-hidden="true" />
                 <span>Escribime</span>
               </a>
@@ -275,7 +275,7 @@ export default function App() {
               {copyMessage}
             </p>
             <div className="contact-links">
-              <a href={profile.phoneHref}>
+              <a href={profile.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={`Escribime por WhatsApp al ${profile.phone}`}>
                 <Phone size={18} />
                 {profile.phone}
                 <ArrowUpRight size={16} />

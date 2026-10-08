@@ -1,4 +1,4 @@
-import { ArrowUpRight, FileText, GitFork, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, FileText, GitFork, MessageCircle, Phone } from "lucide-react";
 import { introduction, profile } from "../content";
 import { SplitText } from "./SplitText";
 import { AnimatedContent } from "./AnimatedContent";
@@ -26,8 +26,8 @@ export function Hero() {
             Ver mi CV
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
-          <a className="button button-outline" href={`mailto:${profile.email}`}>
-            <Mail size={18} aria-hidden="true" />
+          <a className="button button-outline" href={profile.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Escribime por WhatsApp">
+            <MessageCircle size={18} aria-hidden="true" />
             Escribime
             <ArrowUpRight size={17} aria-hidden="true" />
           </a>
@@ -37,7 +37,7 @@ export function Hero() {
             <GitFork size={16} aria-hidden="true" /> Mi GitHub
             <ArrowUpRight size={15} aria-hidden="true" />
           </a>
-          <a href={profile.phoneHref}>
+          <a href={profile.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={`Escribime por WhatsApp al ${profile.phone}`}>
             <Phone size={15} aria-hidden="true" /> {profile.phone}
           </a>
         </div>

@@ -7,7 +7,7 @@ export const profile = {
   origin: "Ushuaia",
   email: "velez.lucasfabricio@gmail.com",
   phone: "+54 2901 588791",
-  phoneHref: "tel:+542901588791",
+  whatsappHref: "https://wa.me/5492901588791",
   github: "https://github.com/velezfabri",
   linkedin: "https://www.linkedin.com/in/fabricio-velez/",
   cv: `${import.meta.env.BASE_URL}cv/Fabricio_Velez_CV.pdf`,

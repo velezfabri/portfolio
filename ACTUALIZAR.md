@@ -18,6 +18,7 @@ No subir node_modules, credenciales ni infraestructura interna de Sites. La expo
 
 ## Qué cambia
 
+- Los botones «Escribime» y el número de teléfono abren el chat de WhatsApp. El destino se configura en `src/content.ts`, en `profile.whatsappHref`.
 - Galería común de cuatro proyectos: segmentación, reingresos, ENFR e incendios.
 - Una acción accesible por tarjeta, filtros y portadas originales.
 - Video original directamente en el detalle de segmentación, sin segundo click; reproducción muteada intentada, controles, VTT, estados y alternativa estática.
