@@ -2,12 +2,10 @@ import { ArrowUpRight, FileText, GitFork, Mail, Phone } from "lucide-react";
 import { introduction, profile } from "../content";
 import { SplitText } from "./SplitText";
 import { AnimatedContent } from "./AnimatedContent";
-import { TechnicalSkills } from "./TechnicalSkills";
 import { PixelParagraphInverse } from "./PixelParagraphInverse";
 import { motionSettings } from "../motion-settings";
-import { type Project } from "../content";
 
-export function Hero({ onOpenProject }: { onOpenProject: (project: Project) => void }) {
+export function Hero() {
   return (
     <section className="hero container" id="inicio" aria-labelledby="hero-title">
       <div className="hero-copy">
@@ -73,7 +71,6 @@ export function Hero({ onOpenProject }: { onOpenProject: (project: Project) => v
         <div><span>Graduado en junio de 2026</span><h3>Ingeniería Biomédica</h3><p>Universidad Nacional de Córdoba</p></div>
         <div><span>En curso</span><h3>Diplomatura en Data Science</h3><p>Mundos E + Universidad Nacional de Córdoba</p></div>
       </div>
-      <TechnicalSkills onOpenProject={onOpenProject} />
       <AnimatedContent className="hero-transition" distance={16}>
         <PixelParagraphInverse text="De la curiosidad a los proyectos." plainWords={["proyectos."]} />
       </AnimatedContent>

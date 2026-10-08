@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   Check,
   Copy,
-  ExternalLink,
   GitFork,
   ContactRound,
   Phone,
@@ -20,10 +19,9 @@ import { AnimatedContent } from "./components/AnimatedContent";
 import { PageMotion } from "./components/PageMotion";
 import { Header } from "./components/Header";
 import { SpotlightCard } from "./components/SpotlightCard";
-import { ProjectPipeline } from "./components/ProjectPipeline";
 
 import { WelcomeGate } from "./components/WelcomeGate";
-import { SegmentationStory } from "./components/SegmentationStory";
+import { TechnicalSkills } from "./components/TechnicalSkills";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 export default function App() {
@@ -60,10 +58,14 @@ export default function App() {
   }, [entered]);
   const [filter, setFilter] = useState("Todos");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const projectOpener = useRef<HTMLElement | null>(null);
+  const openProject = (project: Project, button: HTMLElement) => {
+    projectOpener.current = button;
+    setActiveProject(project);
+  };
   const [copied, setCopied] = useState(false);
   const [copyMessage, setCopyMessage] = useState("");
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const featured = projects[0];
   const selected = projects.filter(
     (project) => filter === "Todos" || project.category === filter,
   );
@@ -97,7 +99,7 @@ export default function App() {
       {entered ? <>
       <PageMotion contentKey={filter} />
       <main id="contenido">
-        <Hero onOpenProject={setActiveProject} />
+        <Hero />
         <section
           className="projects-section section"
           id="proyectos"
@@ -109,8 +111,7 @@ export default function App() {
                 <h2 id="projects-title">Proyectos.</h2>
                 <div className="projects-intro">
                   <p>
-                    Imágenes médicas, salud y territorio. Cuatro proyectos para
-                    explorar cómo trabajo con datos.
+                    Imágenes médicas, salud y territorio. Elegí un proyecto para conocer el proceso y sus resultados.
                   </p>
                   <div
                     className="project-filters"
@@ -136,54 +137,33 @@ export default function App() {
               </div>
             </FadeContent>
             <div className="project-results" id="project-results" key={filter}>
-              {selected.some((project) => project.id === "segmentacion") && (
-                <SegmentationStory project={featured} onOpenCase={() => setActiveProject(featured)} />
-              )}
               <div className="project-grid">
                 {selected
-                  .filter((project) => project.id !== "segmentacion")
                   .map((project, index) => (
                     <SpotlightCard
                       as="article"
                       className={`project-card project-${project.id}`}
                       key={project.id}
                       reveal
-                      delay={index * 0.045}
+                      delay={index * 0.05}
                     >
-                      <div className="card-top">
-                        <span className="project-type">
-                          {project.category === "IA" ? "Machine learning" : "Análisis de datos"}
-                        </span>
-                        <ArrowUpRight size={21} aria-hidden="true" />
-                      </div>
-                      {project.images?.length ? (
-                        <button
-                          className="project-thumbnail"
-                          onClick={() => setActiveProject(project)}
-                          aria-label={`Ver imágenes de ${project.title}`}
-                        >
+                      <div className="project-thumbnail">
                           <img
-                            src={asset(project.images[0].src)}
-                            alt={project.images[0].alt}
-                            width={project.images[0].width}
-                            height={project.images[0].height}
+                            src={asset(project.images?.[0].src ?? "segmentacion-video-poster.jpg")}
+                            alt={project.images?.[0].alt ?? "Etapas de la cascada de segmentación hepática."}
+                            width={project.images?.[0].width ?? 1920}
+                            height={project.images?.[0].height ?? 1080}
                             loading="lazy"
                           />
-                          <span className="thumbnail-expand" aria-hidden="true">
-                            <ExternalLink size={14} />
-                          </span>
-                        </button>
-                      ) : null}
+                      </div>
+                      <span className="project-type">{project.category === "IA" ? "Imágenes médicas · IA" : "Análisis de datos"}</span>
                       <h3>{project.title}</h3>
-                      <p>{project.description}</p>
-                      <ProjectPipeline steps={project.pipeline} />
-                      <Tags tags={project.tags} />
-                      {project.id === "incendios" && <a className="text-link fire-site-link" href={project.links![0].href} target="_blank" rel="noopener noreferrer">
-                        Abrir la página<ArrowUpRight size={17} aria-hidden="true" />
-                      </a>}
+                      <p>{project.cardDescription}</p>
                       <button
                         className="text-link card-link"
-                        onClick={() => setActiveProject(project)}
+                        onClick={event => openProject(project, event.currentTarget)}
+                        aria-haspopup="dialog"
+                        aria-label={`Explorar proyecto: ${project.subtitle}`}
                       >
                         Explorar proyecto
                         <ArrowRight size={17} />
@@ -250,6 +230,9 @@ export default function App() {
               </div>
             </div>
           </div>
+        </section>
+        <section className="skills-section section" aria-labelledby="skills-title">
+          <div className="container"><TechnicalSkills onOpenProject={openProject} onNavigate={navigate} /></div>
         </section>
         <section
           className="contact-section section"
@@ -342,6 +325,7 @@ export default function App() {
       </> : <WelcomeGate onEnter={() => navigate(window.location.hash.slice(1) || "inicio")} />}
       <ProjectDialog
         project={activeProject}
+        openerElement={projectOpener.current}
         onClose={() => setActiveProject(null)}
       />
     </>

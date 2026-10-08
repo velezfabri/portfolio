@@ -64,8 +64,8 @@ El checkout de revisión conserva la integración de Sites. `scripts/export-verc
 
 ## Recorrido interactivo y video
 
-Una entrada por click inicia la presentación: foto, biografía, formación y habilidades. Después vienen segmentación, dashboard de reingresos, ENFR e incendios de Córdoba; luego la experiencia profesional y el contacto.
+Una entrada por click inicia la presentación: foto, biografía y formación. Después vienen segmentación, dashboard de reingresos, ENFR e incendios de Córdoba; luego la experiencia profesional, las habilidades aplicadas y el contacto.
 
-El video de segmentación acompaña cinco capítulos al bajar en escritorio y se puede abrir completo con audio. La versión original y su ZIP editable se conservan. Ver [docs/VIDEO.md](docs/VIDEO.md) para futuras revisiones y los insumos necesarios.
+Los cuatro proyectos comparten una cuadrícula 2×2 con filtros y una acción accesible por tarjeta. El video original de segmentación aparece directamente al abrir su caso e intenta reproducción muteada. Con movimiento reducido espera la acción del visitante. Conserva controles, VTT, descripciones y comparación; otros casos muestran sus imágenes originales. Las herramientas de habilidades enlazan a casos o experiencia, y una sola nota documenta el aprendizaje autodidacta en agentic engineering. La versión original y su ZIP editable se conservan. Ver [docs/VIDEO.md](docs/VIDEO.md) para futuras revisiones y los insumos necesarios.
 
 Los valores de animación están centralizados en `src/motion-settings.ts`; el diseño nuevo está en `src/journey.css`. [docs/MOVIMIENTO.md](docs/MOVIMIENTO.md) explica los controles de velocidad, stagger, tamaño y espacio. [docs/ACTUALIZAR.md](docs/ACTUALIZAR.md) explica cómo actualizar GitHub/Vercel.

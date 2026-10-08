@@ -4,7 +4,7 @@
 
 Portfolio de ingeniería biomédica, datos e IA para personas que contratan o colaboran en proyectos. Lenguaje editorial, tipografía grande y movimiento que conecta la presentación con el trabajo. CSS nativo y GSAP; se conserva la identidad del portfolio anterior.
 
-Lectura de Taste Skill: portfolio técnico con una presentación personal y una experiencia memorable, sin esconder la evidencia de los proyectos. `DESIGN_VARIANCE: 7`, `MOTION_INTENSITY: 7`, `VISUAL_DENSITY: 4`. Se preserva la identidad, se agrupa el contenido personal y se concentra el movimiento en la historia del proyecto y la respuesta a las acciones.
+Lectura de Taste Skill: portfolio técnico con una presentación personal y una experiencia memorable, sin esconder la evidencia de los proyectos. `DESIGN_VARIANCE: 6`, `MOTION_INTENSITY: 6`, `VISUAL_DENSITY: 4`. Se preserva la identidad, se agrupa el contenido personal y se concentra el movimiento en la historia del proyecto y la respuesta a las acciones.
 
 ## Identidad
 
@@ -18,22 +18,23 @@ Lectura de Taste Skill: portfolio técnico con una presentación personal y una 
 ## Recorrido
 
 1. **Entrada interactiva:** botón para iniciar el recorrido. El menú permite entrar a una sección directamente; el CV funciona desde esta pantalla. La entrada se recuerda durante la sesión.
-2. **Presentación, una sola sección:** nombre, foto, biografía, formación y habilidades técnicas. Contenedor de 1080 px para centrar la composición; separación texto/foto de 48 px. Las herramientas abren casos concretos o enlazan a la experiencia.
+2. **Presentación, una sola sección:** nombre, foto, biografía y formación. Contenedor de 1080 px para centrar la composición; separación texto/foto de 48 px. Las herramientas abren casos concretos o enlazan a la experiencia.
 3. **Proyectos:** segmentación hepática primero; después reingresos hospitalarios, ENFR 2018 e incendios de Córdoba. Los filtros conservan los controles legibles en ambos temas.
-4. **Segmentación al bajar:** cinco capítulos siguen las escenas reales del video. En escritorio amplio, la visualización permanece a un lado y el scroll controla el tiempo del video. CSS sticky y GSAP, sin bloquear el scroll. En pantallas pequeñas hay botones para elegir etapas; movimiento reducido muestra todas las descripciones.
+4. **Galería común:** cuadrícula 2×2, una columna debajo de 768 px; filtros y cuatro tarjetas con una sola acción nativa que cubre su superficie. No hay relato obligatorio antes de la galería. El detalle compacto tiene cabecera sticky y un solo scroll; el medio aparece antes de herramientas y texto. Segmentación abre directamente el video original; ENFR conserva Mapa, Resumen y Comparaciones.
 5. **Experiencia profesional:** instituciones y tareas en desplegables, con enlace al CV.
-6. **Contacto:** correo, copia de dirección, teléfono, LinkedIn, GitHub y CV.
+6. **Habilidades:** cuatro grupos en dos columnas, una en móvil, después de experiencia. Cada herramienta enlaza al caso o experiencia correspondiente. Una nota tipográfica explica el aprendizaje autodidacta en agentic engineering y la construcción con IA y vibe coding.
+7. **Contacto:** correo, copia de dirección, teléfono, LinkedIn, GitHub y CV.
 
 ## Movimiento
 
 - Nombre: `stagger` de 0,07 segundos; duración de cada letra 0,8 segundos. Se controla en `src/motion-settings.ts`.
 - Feedback de botones: traslación y presión breves; flechas con un pequeño impulso. CSS en `src/journey.css`.
-- Video: original de 20 segundos con audio, reproducible bajo acción del usuario. Copia 720p sin audio y con fotogramas clave cada 0,5 segundos para los cambios de posición al bajar. Colores e imágenes originales conservados.
-- El reproductor completo abre en un diálogo nativo y se pausa al cerrar. Tiene controles y descripciones VTT en español.
+- Video: original de 20 segundos con audio, visible al abrir el caso; se intenta reproducción muteada después de showModal. Copia 720p sin audio y con fotogramas clave cada 0,5 segundos para los cambios de posición al bajar. Colores e imágenes originales conservados.
+- El reproductor está en el diálogo nativo del caso y se pausa al cerrar. Tiene controles y descripciones VTT en español.
 - Comparación entre referencia y predicción conservada en un desplegable. El slider es nativo y operable con mouse, touch y teclado.
-- GSAP usa matchMedia y limpieza de efectos. No se registra un manejador continuo de scroll en React; el estado cambia únicamente al pasar de capítulo.
-- Todo contenido y todo control permanece disponible con movimiento reducido; la historia usa un flujo estático.
-- La tipografía pixelada queda integrada al final de la presentación. `Statement.tsx` y `Areas.tsx` se conservan como referencias de la versión anterior, pero no se montan como etapas separadas.
+- GSAP usa matchMedia y limpieza de efectos. Las promesas de reproducción usan una generación y limpieza para ignorar resultados tardíos al cerrar.
+- Todo contenido y todo control permanece disponible con movimiento reducido; el video espera una reproducción voluntaria.
+- La tipografía pixelada queda integrada al final de la presentación. `SegmentationStory.tsx`, `ProjectVideo.tsx`, `Statement.tsx` y `Areas.tsx` se conservan como referencias de la versión anterior, pero no se montan como etapas separadas.
 
 ## Herramientas y referencias
 

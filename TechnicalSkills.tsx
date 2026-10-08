@@ -20,7 +20,7 @@ const groups = [
   ] },
 ];
 
-export function TechnicalSkills({ onOpenProject }: { onOpenProject: (project: Project) => void }) {
+export function TechnicalSkills({ onOpenProject, onNavigate }: { onOpenProject: (project: Project, button: HTMLElement) => void; onNavigate: (id: string) => void }) {
   return (
     <div className="technical-skills" id="areas" aria-labelledby="skills-title">
       <AnimatedContent className="skills-heading" distance={18}>
@@ -37,11 +37,11 @@ export function TechnicalSkills({ onOpenProject }: { onOpenProject: (project: Pr
                 return (
                   <li key={tool.name}>
                     {target ? (
-                      <button onClick={() => onOpenProject(target)} title={`Ver ${target.subtitle}`}>
+                      <button onClick={event => onOpenProject(target, event.currentTarget)} title={`Ver ${target.subtitle}`} aria-haspopup="dialog">
                         {tool.name}<ArrowUpRight size={14} aria-hidden="true" />
                         <span className="sr-only">: ver aplicación en {target.subtitle}</span>
                       </button>
-                    ) : <a href="#experiencia">{tool.name}<ArrowUpRight size={14} aria-hidden="true" /><span className="sr-only">: ver experiencia profesional</span></a>}
+                    ) : <a href="#experiencia" onClick={event => { event.preventDefault(); onNavigate("experiencia"); }}>{tool.name}<ArrowUpRight size={14} aria-hidden="true" /><span className="sr-only">: ver experiencia profesional</span></a>}
                   </li>
                 );
               })}
@@ -49,6 +49,7 @@ export function TechnicalSkills({ onOpenProject }: { onOpenProject: (project: Pr
           </AnimatedContent>
         ))}
       </div>
+      <div className="learning-note"><h3>Aprendizaje en curso</h3><p>Estoy aprendiendo agentic engineering de forma autodidacta. Este portfolio también es parte de ese proceso: lo estoy construyendo con ayuda de IA y vibe coding.</p></div>
     </div>
   );
 }

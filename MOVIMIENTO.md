@@ -1,6 +1,6 @@
 # Editar movimiento y distribución
 
-La página tiene una entrada por click y luego presentación, proyectos y experiencia. Contacto cierra el recorrido. Los componentes de React Bits ya adaptados siguen siendo la base de las entradas y del nombre; Cult UI aporta el párrafo tipográfico integrado a la presentación. La historia del video es una implementación propia con GSAP.
+La página tiene una entrada por click y luego presentación, proyectos, experiencia y habilidades. Contacto cierra el recorrido. Los componentes de React Bits ya adaptados siguen siendo la base de las entradas y del nombre; Cult UI aporta el párrafo tipográfico integrado a la presentación. El video actual vive directamente en ProjectDialog; SegmentationStory y sus ajustes de scroll quedan como referencia sin montar.
 
 ## Valores principales
 
@@ -19,7 +19,7 @@ En `src/motion-settings.ts`, los tiempos de GSAP se expresan en segundos y las d
 | `story.scrub` | `0.25` | Suavizado del seguimiento del scroll. No es la duración total del relato. |
 | `story.start`, `story.end` | `top 35%`, `bottom 65%` | Relación entre los capítulos y el viewport para empezar y terminar el video. |
 
-`src/components/SegmentationStory.tsx` contiene `segmentationChapters`. Allí están nombres, textos, tiempos de comienzo y posiciones que se muestran al pulsar los botones. Las escenas del original cambian a los 3,1; 7,5; 10 y 14 segundos. Se reparte el scroll por capítulos y después se convierte a los tiempos respectivos del video.
+`src/segmentation-chapters.ts` contiene las cinco descripciones utilizadas en el detalle. `src/components/SegmentationStory.tsx` conserva su guion histórico. Allí están nombres, textos, tiempos de comienzo y posiciones que se muestran al pulsar los botones. Las escenas del original cambian a los 3,1; 7,5; 10 y 14 segundos. Se reparte el scroll por capítulos y después se convierte a los tiempos respectivos del video.
 
 ## CSS
 
@@ -37,8 +37,8 @@ En `src/motion-settings.ts`, los tiempos de GSAP se expresan en segundos y las d
 | `--feedback-ease` | curva Bézier | Intensidad de la sensación elástica. |
 | `arrow-response` | `380ms`, desplazamiento 5/-3 px | Impulso breve de las flechas. |
 
-El relato con video al bajar funciona desde 1024 px de ancho y 700 px de alto. En pantallas menores, los botones seleccionan escenas. Movimiento reducido muestra los textos juntos y mantiene la reproducción del video bajo control del visitante.
+El recorrido actual no controla el tiempo del video con scroll. La cuadrícula usa dos columnas y gap de 24 px; debajo de 768 px, una columna y gap de 20 px. ProjectDialog limita su altura a 92dvh (94dvh móvil), tiene cabecera sticky y un solo scroll. El video intenta play() muteado después de abrir; movimiento reducido deja el poster y controles para reproducción voluntaria. Los parámetros story de la tabla son históricos y no afectan la galería actual.
 
 La primera entrada se recuerda por pestaña en `sessionStorage`. Para revisar nuevamente la pantalla de entrada, usar una nueva sesión o borrar la clave `fabricio-portfolio-entered` desde las herramientas del navegador.
 
-Ejemplos de pedidos: «stagger 0,10», «gap texto/foto 32 px», «capítulos de 42dvh», «botones más rápidos: 220ms».
+Ejemplos de pedidos: «stagger 0,10», «gap texto/foto 32 px», «gap de tarjetas 20 px», «botones más rápidos: 220ms».

@@ -4,34 +4,34 @@ Repositorio: https://github.com/velezfabri/portfolio
 
 Página pública: https://portfolio-six-navy-88.vercel.app/
 
-## Desde GitHub, sin instalar programas
+## Actualización acumulativa
 
-1. Descargar y descomprimir `portfolio-historia-y-video.zip`.
-2. Abrir el repositorio y elegir **Add file → Upload files**.
-3. Arrastrar el contenido descomprimido: `src`, `docs`, `public` y `THIRD_PARTY.md` deben quedar en la raíz del repositorio. Reemplazar los archivos con el mismo nombre; no crear una carpeta contenedora adicional.
-4. Confirmar con **Commit changes** en la rama conectada con Vercel.
-5. Esperar a que el despliegue de Vercel termine y abrir la página pública.
+La entrega portable se prepara como actualización acumulativa respecto de la base original dc93e26. Incluye los cambios ya presentes en GitHub 79018d37fd147b42985a76453f5f8537efc07b1d y esta revisión. Permite actualizar cualquiera de esas versiones sin requerir otro ZIP. Revisar diferencias si hubo ediciones posteriores sobre los mismos archivos.
 
-El ZIP incluye únicamente archivos cambiados o añadidos. No incluye `node_modules`, credenciales, dependencias nuevas, ni duplicados del CV y de las fotografías. Dentro de `public` están la fuente pixelada y las licencias nuevas, necesarias para esta actualización.
+1. Descargar y descomprimir el ZIP de actualización.
+2. Abrir el repositorio y elegir Add file → Upload files.
+3. Subir el contenido preservando sus carpetas: src, public, docs y video-source deben quedar en la raíz, junto con los documentos de raíz incluidos. No agregar una carpeta contenedora ni reunir los archivos interiores sueltos en la raíz.
+4. Reemplazar archivos con el mismo nombre. Conservar los medios existentes: original MP4, copia 720p y fuente editable se incluyen sin modificación; CV y foto mantienen sus archivos.
+5. Confirmar en la rama conectada con Vercel, esperar al despliegue y abrir la página pública.
+
+No subir node_modules, credenciales ni infraestructura interna de Sites. La exportación portable conserva las dependencias y configuración de Vercel correspondientes.
 
 ## Qué cambia
 
-- Entrada por click y presentación unificada con biografía, formación y habilidades.
-- Texto y foto más próximos; letras con mayor separación temporal.
-- Segmentación con una historia de cinco capítulos y video original.
-- Dashboard de reingresos, mapa ENFR e incendios de Córdoba en ese orden.
-- Respuesta de movimiento en botones, experiencia profesional y contacto.
-- Fuente editable del video conservada en `video-source/`.
+- Galería común de cuatro proyectos: segmentación, reingresos, ENFR e incendios.
+- Una acción accesible por tarjeta, filtros y portadas originales.
+- Video original directamente en el detalle de segmentación, sin segundo click; reproducción muteada intentada, controles, VTT, estados y alternativa estática.
+- Detalle compacto con cabecera sticky y un solo scroll.
+- Habilidades después de experiencia y antes de contacto; nota única de aprendizaje autodidacta con IA y vibe coding.
 
-## Comprobación después de publicar
+## Comprobar después de publicar
 
-1. Entrar desde el botón, y en otra sesión desde el menú. Verificar CV, teclado y anclas.
-2. Bajar por la historia de segmentación, volver hacia arriba y elegir etapas desde los botones.
-3. Abrir el video completo, activar sonido, pausar y cerrar con Escape.
-4. Probar filtros, casos, comparación de segmentos y galerías de ENFR en los dos temas.
-5. Revisar una pantalla móvil y activar movimiento reducido; las descripciones y acciones deben seguir disponibles.
-6. Probar el enlace de incendios, correo, teléfono, copia de email y CV.
+1. Entrada y menú, CV, anclas y contacto.
+2. Cuatro tarjetas y filtros en desktop/móvil y ambos temas.
+3. Abrir segmentación y comprobar video visible inmediatamente, reproducción sin sonido y controles.
+4. Cerrar con botón, Escape y backdrop; comprobar pausa y retorno al botón exacto. Reabrir desde cero.
+5. Probar rechazo de autoplay, error, pestaña oculta y movimiento reducido.
+6. Leer etapas, comparar referencia/predicción y recorrer Mapa/Resumen/Comparaciones de ENFR.
+7. Abrir casos desde habilidades y comprobar vínculos a experiencia.
 
-Los parámetros editables están en `docs/MOVIMIENTO.md`; la fuente y los recursos del video se describen en `docs/VIDEO.md`. La verificación realizada y sus límites figuran en `docs/analisis-frontend.md`.
-
-Base de esta actualización: commit `dc93e26` de GitHub. Revisar diferencias si editaste los mismos archivos después. El código publicado no depende de instalar Taste Skill ni UI/UX Pro Max.
+Valores editables: docs/MOVIMIENTO.md. Recursos del video: docs/VIDEO.md. Comprobaciones reales y límites: docs/analisis-frontend.md. Taste y UI/UX Pro Max no son dependencias del sitio.
