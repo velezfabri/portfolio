@@ -1,0 +1,16 @@
+WEBVTT
+
+00:00.000 --> 00:03.100
+Una tomografía 3D como punto de partida.
+
+00:03.100 --> 00:07.500
+La primera 3D U-Net analiza el volumen para identificar el hígado.
+
+00:07.500 --> 00:10.000
+La máscara del hígado conecta las dos etapas de la cascada.
+
+00:10.000 --> 00:14.000
+La segunda 3D U-Net identifica los ocho segmentos de Couinaud.
+
+00:14.000 --> 00:20.000
+Tomografía, segmentos anatómicos y reconstrucción del resultado del modelo.

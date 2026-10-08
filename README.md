@@ -55,12 +55,17 @@ La foto de graduación y el PDF se conservan sin modificar. Las imágenes de pro
 
 - [Segmentación de hígado y Couinaud](https://github.com/velezfabri/PI-Velez-Final).
 - [Dashboard de reingresos](https://github.com/velezfabri/Reingresos-hospitales-Dashboard/blob/main/images/dashboard.png): vista estática recreada para documentación, según el repositorio original.
+- [Incendios Córdoba](https://github.com/velezfabri/Incendios-Cordoba): visualización estática creada con los polígonos y detecciones publicados en ese repositorio.
 - [ENFR 2018](https://github.com/velezfabri/dashboard-enfr-2018/tree/main/docs/images): mapa, resumen y comparaciones de la aplicación.
 
 Las métricas incluyen contexto de evaluación. Las referencias de diseño y las licencias se documentan en [THIRD_PARTY.md](THIRD_PARTY.md).
 
 El checkout de revisión conserva la integración de Sites. `scripts/export-vercel.mjs` genera una copia independiente con las dependencias necesarias para Vercel y excluye la identidad y los archivos internos del alojamiento de revisión.
 
-## Actualización editorial y Cult UI
+## Recorrido interactivo y video
 
-Presentación con nombre y acciones visibles, capítulo de texto pixelado con scroll, comparación real de segmentación y nueva jerarquía de proyectos y contacto. Ver `docs/ACTUALIZAR.md` para publicar y `docs/analisis-frontend.md` para decisiones y verificación. Las dependencias de producción permanecen iguales.
+Una entrada por click inicia la presentación: foto, biografía, formación y habilidades. Después vienen segmentación, dashboard de reingresos, ENFR e incendios de Córdoba; luego la experiencia profesional y el contacto.
+
+El video de segmentación acompaña cinco capítulos al bajar en escritorio y se puede abrir completo con audio. La versión original y su ZIP editable se conservan. Ver [docs/VIDEO.md](docs/VIDEO.md) para futuras revisiones y los insumos necesarios.
+
+Los valores de animación están centralizados en `src/motion-settings.ts`; el diseño nuevo está en `src/journey.css`. [docs/MOVIMIENTO.md](docs/MOVIMIENTO.md) explica los controles de velocidad, stagger, tamaño y espacio. [docs/ACTUALIZAR.md](docs/ACTUALIZAR.md) explica cómo actualizar GitHub/Vercel.

@@ -45,3 +45,11 @@ La dirección visual se contrastó con el HTML y CSS públicos de [Juan Pablo Ro
 - **DESIGN.md del usuario**, referencia editorial inspirada en Dennis Snellenberg: escala, espacio y formas de controles. Se aplica conservando la identidad y los recursos originales de Fabricio.
 
 La animación del párrafo y la comparación deslizante son implementaciones propias con GSAP y controles nativos. La comparación encuadra en CSS los dos paneles de la imagen original `resultado-test.png`; no altera ese archivo. La imagen completa y su leyenda se conservan en el detalle del proyecto.
+
+## Relato con video y nueva estructura
+
+- Video y guion proporcionados por Fabricio Velez. El original se conserva byte por byte; la copia para scroll únicamente cambia resolución, codificación y audio. No se recolorean las imágenes o etiquetas anatómicas. La fuente original está en `video-source/`.
+- [Incendios Córdoba](https://github.com/velezfabri/Incendios-Cordoba): el JSON público `site/data/thermal_matches.json` contiene polígonos de IDECOR y detecciones NASA FIRMS. La miniatura es una visualización estática de esos datos, con escalas independientes. Receta en `scripts/create-incendios-preview.py`; no es una captura del sitio.
+- [Ayush Shetty](https://ayushetty.me/projects/portfolio): referencia de entrada interactiva elegida por el usuario. Implementación propia; no se copió su código ni sus fotografías.
+- [Josh W. Comeau](https://www.joshwcomeau.com/animation/squash-and-stretch/): referencia de respuesta de movimiento en controles. CSS propio con las flechas Lucide existentes.
+- UI/UX Pro Max: consultas `portfolio scroll storytelling` (GSAP), `animation reduced motion` (UX) y `effect cleanup` (React). Se conservaron la paleta y Manrope; el movimiento principal explica la cascada real.
