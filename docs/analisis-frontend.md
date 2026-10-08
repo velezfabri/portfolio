@@ -1,32 +1,28 @@
-# Revisión del portfolio: recorrido y video
+# Revisión del portfolio: galería y detalle
 
 ## Resultado
 
-Una entrada por click conduce a una única sección de presentación con foto, biografía, formación y habilidades aplicadas. Siguen segmentación, dashboard de reingresos, ENFR e incendios de Córdoba; luego experiencia y contacto. Se conservan Manrope, paleta verde, CV y fotografías originales.
+Entrada por click, presentación con foto, biografía y formación; galería de segmentación, reingresos, ENFR e incendios; experiencia, habilidades y contacto. Se conservan identidad, stagger, movimientos existentes, CV y medios originales. La frase Cult sigue siendo «De la curiosidad a los proyectos.».
 
-El relato de segmentación utiliza cinco escenas del video del usuario. La visualización acompaña al scroll en escritorio amplio; en pantallas menores se explora mediante botones. El original con sonido se abre con controles. No se incluye una experiencia 3D interactiva adicional.
+La cuadrícula común 2×2 usa cuatro portadas auténticas y una acción nativa por tarjeta extendida a toda la superficie. Filtros y conteo accesible permanecen. El detalle tiene cabecera compacta sticky, un scroll y medio antes de herramientas/texto. Segmentación muestra el MP4 original directamente; ENFR conserva sus tres vistas. Comparación y métricas conservan el contexto académico.
 
 ## Revisión de diseño
 
-Taste Skill: rediseño que conserva la identidad. DESIGN_VARIANCE 7, MOTION_INTENSITY 7 y VISUAL_DENSITY 4. CSS nativo y GSAP ya presentes. No se incorpora otra biblioteca de animación. La estructura cambia por pedido del usuario. El nombre usa stagger 0,07; el texto y la foto están en un contenedor centrado de 1080 px, con menor separación.
+Se implementó el handoff de GPT-6 Astra, con auditoría de código mediante Taste y UI/UX Pro Max. Diales: DESIGN_VARIANCE 6, MOTION_INTENSITY 6, VISUAL_DENSITY 4. Consultas focalizadas: keyboard focus modal, video autoplay reduced motion y effect cleanup media ref. No se añadió otra dependencia ni 3D.
 
-UI/UX Pro Max: consultas focalizadas de relato con scroll, movimiento reducido y limpieza de efectos en React. Se aplican soporte de foco/teclado, áreas de toque de 44 px, botones legibles, metadatos de video y limpieza de GSAP.
+Las habilidades salen del hero por pedido actual del usuario. Cada herramienta mantiene vínculo a un caso o experiencia. Una sola nota explica el aprendizaje autodidacta de agentic engineering y la construcción del portfolio con IA y vibe coding.
 
-## Verificación realizada
+## Verificación de esta implementación
 
-- TypeScript y compilación de producción de la versión de revisión y exportación React/Vite portable.
-- Render estático de React de la pantalla inicial y del estado posterior a entrar, sin iniciar un servidor ni un navegador.
-- En esos renderizados: CV disponible antes de entrar, secuencia de las secciones, orden de proyectos, enlace a la página de incendios, IDs sin duplicados, destinos de anclas y aria-controls, y existencia de recursos locales.
-- MP4 original conservado byte por byte; duración de 20 segundos y reproducción completa de la copia de scroll mediante decodificación FFmpeg.
-- CV original sin modificación: SHA-256 e81ece614e47164cc4a40a6002e66ace6efbe82b483054da633361f981de742a.
-- Contraste de texto sobre botones/filtros seleccionados: 4,99:1 en claro y 10,27:1 en oscuro.
-- Miniatura de incendios inspeccionada visualmente, con polígonos y detecciones reales de su repositorio; escalas independientes aclaradas.
-- Inspección de código de limpieza de animaciones, pausa de video al cerrar y rutas alternativas en móvil y movimiento reducido.
+- npm run typecheck: aprobado.
+- Revisión de código: orden DOM de cuatro proyectos; botón único por tarjeta; pausa de medios, generación y limpieza para evitar estado tardío; cierre de usuario separado de eventos close de cleanup.
+- Compilación portable aprobada con npm run build, que incluye npm run typecheck: 1.821 módulos; CSS de 68,36 KB (13,62 KB gzip) y JavaScript de 356,34 KB (122,02 KB gzip).
+- SSR sin servidor ni navegador: entrada y CV; orden inicio → proyectos → experiencia → areas → contacto; cuatro portadas y nota de aprendizaje; video original como primer medio, VTT, métricas, comparación y enlaces; galería ENFR con sus tres imágenes.
+- Parser sobre seis HTML: 36 referencias locales verificadas, IDs únicos, destinos de anclas y ARIA y enlaces de contacto válidos.
+- Los cinco hashes de CV, foto, MP4 original, copia 720p y ZIP editable se mantienen respecto de la base.
 
-## Límites
+## Límites pendientes
 
-No había disponible un navegador de pruebas permitido en este entorno. Quedan pendientes la revisión visual en los dos temas y tamaños, fluidez real del scroll/seek, teclado en diálogos, galerías y Lighthouse. El render estático no prueba clicks ni reproducción en un navegador.
+No se inició servidor ni navegador en managedSite. No se afirma QA visual. Quedan pendientes revisión real de ambos temas y tamaños, autoplay/rechazo/error, teclado, backdrop, foco exacto al disparador, reapertura StrictMode y movimiento reducido. Typecheck no prueba reproducción ni interacción en navegador.
 
-## Ajustes futuros
-
-Ver docs/MOVIMIENTO.md y docs/VIDEO.md. Los recursos volumétricos necesarios para volver a generar el video no se publican en la web. El ZIP editable original y su documentación se conservan en video-source/.
+Los recursos volumétricos necesarios para regenerar el video no se publican. ZIP editable original y medios se conservan; ver VIDEO.md y MOVIMIENTO.md.

@@ -7,7 +7,7 @@ export const profile = {
   origin: "Ushuaia",
   email: "velez.lucasfabricio@gmail.com",
   phone: "+54 2901 588791",
-  phoneHref: "tel:+542901588791",
+  whatsappHref: "https://wa.me/5492901588791",
   github: "https://github.com/velezfabri",
   linkedin: "https://www.linkedin.com/in/fabricio-velez/",
   cv: `${import.meta.env.BASE_URL}cv/Fabricio_Velez_CV.pdf`,
@@ -38,6 +38,7 @@ export type Project = {
   title: string;
   subtitle: string;
   description: string;
+  cardDescription: string;
   tags: string[];
   question: string;
   work: string[];
@@ -50,6 +51,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "segmentacion",
+    cardDescription: "De una tomografía al hígado y sus ocho segmentos anatómicos.",
     pipeline: ["Tomografía", "Hígado", "Couinaud", "Visualización"],
     number: "01",
     category: "IA",
@@ -81,6 +83,7 @@ export const projects: Project[] = [
   },
   {
     id: "reingresos",
+    cardDescription: "Datos clínicos, SQL y un dashboard para explorar reingresos.",
     pipeline: ["Datos clínicos", "SQL", "Métricas", "Power BI"],
     number: "02",
     category: "Datos",
@@ -119,6 +122,7 @@ export const projects: Project[] = [
   },
   {
     id: "enfr",
+    cardDescription: "Un mapa y cinco indicadores de la ENFR 2018 para explorar por provincia.",
     pipeline: ["ENFR 2018", "Ponderación", "Análisis en R", "Shiny"],
     number: "03",
     category: "Datos",
@@ -174,6 +178,7 @@ export const projects: Project[] = [
   },
   {
     id: "incendios",
+    cardDescription: "Datos oficiales y observaciones satelitales para explorar dos eventos.",
     pipeline: ["Fuentes oficiales", "Python", "Cruce espacial", "Web interactiva"],
     number: "04", category: "Datos", title: "Incendios en Córdoba",
     subtitle: "Datos oficiales y observaciones satelitales en una historia interactiva",

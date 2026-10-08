@@ -381,7 +381,7 @@ button, a.button, .nav-cv, .header-cv {
   .explorer-steps { gap: 5px; }
   .explorer-steps button { padding-inline: 10px; }
   .project-grid { grid-template-columns: 1fr; gap: 20px; }
-  .project-card, .project-chatbot { grid-column: auto; display: flex; }
+  .project-card, .project-chatbot { grid-column: auto; display: block; }
   .project-preview-text { width: 100%; margin-block: 20px 25px; min-height: 240px; }
   .project-preview-text > span:first-child { font-size: 64px; }
   .project-card h3 { font-size: 26px; }

@@ -22,7 +22,7 @@ export function SegmentationExplorer() {
         </label>
         <figcaption>
           Mismo corte del conjunto de test: referencia manual y predicción de
-          segmentos de Couinaud. La imagen completa y su leyenda están en el detalle del caso.
+          segmentos de Couinaud. La imagen completa y su leyenda aparecen a continuación.
         </figcaption>
       </figure>
 
