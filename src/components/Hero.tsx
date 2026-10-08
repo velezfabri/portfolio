@@ -2,17 +2,21 @@ import { ArrowUpRight, FileText, GitFork, Mail, Phone } from "lucide-react";
 import { introduction, profile } from "../content";
 import { SplitText } from "./SplitText";
 import { AnimatedContent } from "./AnimatedContent";
+import { TechnicalSkills } from "./TechnicalSkills";
+import { PixelParagraphInverse } from "./PixelParagraphInverse";
+import { motionSettings } from "../motion-settings";
+import { type Project } from "../content";
 
-export function Hero() {
+export function Hero({ onOpenProject }: { onOpenProject: (project: Project) => void }) {
   return (
     <section className="hero container" id="inicio" aria-labelledby="hero-title">
       <div className="hero-copy">
         <p className="hero-kicker">Ingeniería biomédica + datos + IA</p>
-        <h1 id="hero-title">
+        <h1 id="hero-title" tabIndex={-1}>
           <span className="sr-only">Fabricio Velez.</span>
           <SplitText text="Fabricio" />
           <br />
-          <SplitText text="Velez." delay={0.12} className="hero-title-accent" />
+          <SplitText text="Velez." delay={motionSettings.name.surnameDelay} className="hero-title-accent" />
         </h1>
         <p className="hero-intro">
           Ingeniero biomédico. Conecto salud, datos e inteligencia artificial
@@ -55,7 +59,7 @@ export function Hero() {
           </figcaption>
         </figure>
       </AnimatedContent>
-      <AnimatedContent className="hero-story" distance={30}>
+      <AnimatedContent className="hero-story" distance={24} id="sobre-mi">
         <h2>De Ushuaia <br />a Córdoba.</h2>
         <div className="hero-biography">
           <p>{introduction.origin}</p>
@@ -64,6 +68,14 @@ export function Hero() {
             También hablo inglés, entreno jiu-jitsu y voy al gimnasio.
           </p>
         </div>
+      </AnimatedContent>
+      <div className="hero-education" aria-label="Formación académica">
+        <div><span>Graduado en junio de 2026</span><h3>Ingeniería Biomédica</h3><p>Universidad Nacional de Córdoba</p></div>
+        <div><span>En curso</span><h3>Diplomatura en Data Science</h3><p>Mundos E + Universidad Nacional de Córdoba</p></div>
+      </div>
+      <TechnicalSkills onOpenProject={onOpenProject} />
+      <AnimatedContent className="hero-transition" distance={16}>
+        <PixelParagraphInverse text="De la curiosidad a los proyectos." plainWords={["proyectos."]} />
       </AnimatedContent>
     </section>
   );

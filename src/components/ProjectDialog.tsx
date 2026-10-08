@@ -72,7 +72,9 @@ export function ProjectDialog({
     const oldOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     dialog.showModal();
+    const videos = dialog.querySelectorAll("video");
     return () => {
+      videos.forEach(video => video.pause());
       dialog.close();
       document.body.style.overflow = oldOverflow;
     };
@@ -105,6 +107,11 @@ export function ProjectDialog({
           <Tags tags={project.tags} />
           <ProjectPipeline steps={project.pipeline} />
           {project.id === "segmentacion" && (
+            <>
+            <video className="case-video" controls playsInline preload="metadata" poster={asset("segmentacion-video-poster.jpg")} aria-label="Video de la cascada de segmentación hepática">
+              <source src={`${import.meta.env.BASE_URL}videos/segmentacion-hepatica.mp4`} type="video/mp4" />
+              <track kind="captions" src={`${import.meta.env.BASE_URL}videos/segmentacion-hepatica.vtt`} srcLang="es" label="Descripción en español" />
+            </video>
             <figure className="dialog-figure">
               <img
                 src={asset("resultado-test.png")}
@@ -117,6 +124,7 @@ export function ProjectDialog({
                 Derecha: predicción del modelo.
               </figcaption>
             </figure>
+            </>
           )}
           {project.images?.length ? (
             <ProjectGallery key={project.id} images={project.images} />

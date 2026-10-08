@@ -25,6 +25,7 @@ mkdirSync(resolve(destination, "scripts"), { recursive: true });
 for (const file of [
   "src",
   "public",
+  "video-source",
   "docs",
   "index.html",
   "README.md",
@@ -32,6 +33,7 @@ for (const file of [
   "THIRD_PARTY.md",
   "vercel.json",
   "scripts/export-vercel.mjs",
+  "scripts/create-incendios-preview.py",
 ]) {
   cpSync(resolve(source, file), resolve(destination, file), {
     recursive: true,

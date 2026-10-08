@@ -1,42 +1,32 @@
-# Análisis y decisiones de frontend
+# Revisión del portfolio: recorrido y video
 
-Revisión del portfolio publicado en el repositorio, tomando como base el commit `ab11b33`.
+## Resultado
 
-## Hallazgos y cambios
+Una entrada por click conduce a una única sección de presentación con foto, biografía, formación y habilidades aplicadas. Siguen segmentación, dashboard de reingresos, ENFR e incendios de Córdoba; luego experiencia y contacto. Se conservan Manrope, paleta verde, CV y fotografías originales.
 
-| Hallazgo | Cambio | Propósito |
-| --- | --- | --- |
-| La biografía extensa desplazaba las acciones principales. | Primera vista con nombre, profesión, una frase y botones; historia personal dentro de esa misma primera sección. | Reconocer el perfil y acceder al CV o al contacto rápidamente. |
-| Varias secciones repetían título a la izquierda y explicación a la derecha. | Encabezado de proyectos apilado, áreas asimétricas, experiencia horizontal y contacto con tipografía grande. | Dar ritmo al recorrido y diferenciar su función. |
-| Las entradas de scroll compartían un mismo efecto. | Un capítulo breve con palabras pixeladas que se revelan al avanzar. | Conectar curiosidad y proyectos con un gesto visual propio. |
-| El resultado de segmentación era una imagen que había que mirar completa. | Comparación nativa deslizante y etapas seleccionables. | Permitir explorar la evidencia y entender la cascada de redes. |
-| Numeraciones, etiquetas y franjas competían con el contenido. | Menos microtexto decorativo; títulos y leyendas funcionales. | Concentrar la atención en personas, proyectos y acciones. |
-| Contacto conservaba una inversión de tema. | Contacto sigue el tema elegido, con un CTA de correo destacado. | Mantener continuidad visual y facilitar el siguiente paso. |
+El relato de segmentación utiliza cinco escenas del video del usuario. La visualización acompaña al scroll en escritorio amplio; en pantallas menores se explora mediante botones. El original con sonido se abre con controles. No se incluye una experiencia 3D interactiva adicional.
 
-## Referencias consultadas
+## Revisión de diseño
 
-- [Darpan Jain](https://darpanjain.com/): organiza proyectos, investigación y experimentos interactivos, con acceso al CV y contacto. Se tomó la idea de explorar un resultado técnico propio.
-- [Mitchell Sparrow](https://www.mitchellsparrow.com/): combina su formación en IA con origen, trayectoria e intereses personales. Se tomó la estructura humana del relato, sin copiar sus logros, fotografías ni proyectos.
-- [Cult UI: Pixel Paragraph Words Inverse](https://www.cult-ui.com/docs/components/pixel-paragraph-words-inverse): el componente original asigna tipografía pixelada y normal a distintas palabras. La animación de scroll es una extensión propia usando GSAP.
-- `DESIGN.md`, proporcionado por el usuario: jerarquía editorial, espacio y controles redondeados. Se conservaron las fuentes, el color y el contenido de Fabricio.
-- [Portfolio de Juan Pablo Rojo](https://jpr-web-mu.vercel.app/es): referencia de la presentación y del contexto de proyectos en las revisiones anteriores.
+Taste Skill: rediseño que conserva la identidad. DESIGN_VARIANCE 7, MOTION_INTENSITY 7 y VISUAL_DENSITY 4. CSS nativo y GSAP ya presentes. No se incorpora otra biblioteca de animación. La estructura cambia por pedido del usuario. El nombre usa stagger 0,07; el texto y la foto están en un contenedor centrado de 1080 px, con menor separación.
 
-Los portfolios de Darpan y Mitchell se consultaron por su contenido público; no se verificó su implementación de animaciones en un navegador. No se reutilizaron imágenes, CV, código privado ni información personal ajena.
+UI/UX Pro Max: consultas focalizadas de relato con scroll, movimiento reducido y limpieza de efectos en React. Se aplican soporte de foco/teclado, áreas de toque de 44 px, botones legibles, metadatos de video y limpieza de GSAP.
 
-## Aplicación contextual de Taste Skill
+## Verificación realizada
 
-Se conservan decisiones explícitas del usuario y del proyecto: CV y contacto repetidos en puntos útiles, una sola familia para títulos, ambas opciones de tema y la foto original. El párrafo pixelado es una excepción localizada solicitada por el usuario. Se mantiene Lucide, ya instalado, como única familia de iconos. React + Vite no requiere directivas de Next.js ni instalar otro sistema de componentes.
+- TypeScript y compilación de producción de la versión de revisión y exportación React/Vite portable.
+- Render estático de React de la pantalla inicial y del estado posterior a entrar, sin iniciar un servidor ni un navegador.
+- En esos renderizados: CV disponible antes de entrar, secuencia de las secciones, orden de proyectos, enlace a la página de incendios, IDs sin duplicados, destinos de anclas y aria-controls, y existencia de recursos locales.
+- MP4 original conservado byte por byte; duración de 20 segundos y reproducción completa de la copia de scroll mediante decodificación FFmpeg.
+- CV original sin modificación: SHA-256 e81ece614e47164cc4a40a6002e66ace6efbe82b483054da633361f981de742a.
+- Contraste de texto sobre botones/filtros seleccionados: 4,99:1 en claro y 10,27:1 en oscuro.
+- Miniatura de incendios inspeccionada visualmente, con polígonos y detecciones reales de su repositorio; escalas independientes aclaradas.
+- Inspección de código de limpieza de animaciones, pausa de video al cerrar y rutas alternativas en móvil y movimiento reducido.
 
-La comparación permite revisar las predicciones de un caso de test ya calculado. La información de etapas es explicativa. Se conserva la declaración de evaluación académica y el contexto de las cifras.
+## Límites
 
-## Verificación
+No había disponible un navegador de pruebas permitido en este entorno. Quedan pendientes la revisión visual en los dos temas y tamaños, fluidez real del scroll/seek, teclado en diálogos, galerías y Lighthouse. El render estático no prueba clicks ni reproducción en un navegador.
 
-- TypeScript y compilación Vite de producción correctos.
-- Renderizado del árbol React sin navegador: IDs únicos, anclas y destinos de controles existentes, imágenes locales, contacto y CV accesibles.
-- Componente de palabras mixtas: frases largas con prioridad y caracteres especiales literales.
-- Control nativo de comparación con inicio en 50 %, controles de etapa con selección anunciada y desplegables de experiencia presentes.
-- Contraste calculado de selección y CTA con fondo de acento: 4,99:1 en claro y 10,27:1 en oscuro. Texto, CTA principal y leyendas comprobados por encima de 4,5:1.
-- CV, fotografía y resultado de test conservan exactamente sus bytes originales.
-- Revisión de limpieza de efectos, breakpoints, movimiento reducido y texto visible. No se añaden dependencias de producción.
+## Ajustes futuros
 
-La revisión visual, el arrastre real en dispositivos, los recorridos completos por teclado y Lighthouse están pendientes. No hay un navegador de pruebas habilitado en este entorno; Sites indica omitir esa comprobación si `control-browser` no está disponible. Estos controles deben realizarse después del despliegue y no se presentan como pruebas completadas.
+Ver docs/MOVIMIENTO.md y docs/VIDEO.md. Los recursos volumétricos necesarios para volver a generar el video no se publican en la web. El ZIP editable original y su documentación se conservan en video-source/.

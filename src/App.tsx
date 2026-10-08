@@ -19,14 +19,45 @@ import { FadeContent } from "./components/FadeContent";
 import { AnimatedContent } from "./components/AnimatedContent";
 import { PageMotion } from "./components/PageMotion";
 import { Header } from "./components/Header";
-import { Areas } from "./components/Areas";
 import { SpotlightCard } from "./components/SpotlightCard";
 import { ProjectPipeline } from "./components/ProjectPipeline";
-import { Statement } from "./components/Statement";
-import { SegmentationExplorer } from "./components/SegmentationExplorer";
+
+import { WelcomeGate } from "./components/WelcomeGate";
+import { SegmentationStory } from "./components/SegmentationStory";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}images/${name}`;
 export default function App() {
+  const [entered, setEntered] = useState(() => {
+    try { return sessionStorage.getItem("fabricio-portfolio-entered") === "yes"; }
+    catch { return false; }
+  });
+  const pendingTarget = useRef<string | null>(typeof window === "undefined" ? null : window.location.hash.slice(1) || null);
+  const navigate = (id: string) => {
+    if (!entered) {
+      pendingTarget.current = id;
+      setEntered(true);
+      try { sessionStorage.setItem("fabricio-portfolio-entered", "yes"); } catch { /* The entry also works without storage. */ }
+      return;
+    }
+    window.history.replaceState(null, "", `#${id}`);
+    const target = document.getElementById(id);
+    target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    const heading = target?.querySelector<HTMLElement>("h1, h2");
+    if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
+  };
+  useEffect(() => {
+    if (!entered || !pendingTarget.current) return;
+    const id = pendingTarget.current;
+    const frame = requestAnimationFrame(() => {
+      pendingTarget.current = null;
+      const target = document.getElementById(id);
+      target?.scrollIntoView({ behavior: "instant" });
+      window.history.replaceState(null, "", `#${id}`);
+      const heading = target?.querySelector<HTMLElement>("h1, h2");
+      if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [entered]);
   const [filter, setFilter] = useState("Todos");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [copied, setCopied] = useState(false);
@@ -62,12 +93,11 @@ export default function App() {
       <a className="skip-link" href="#contenido">
         Saltar al contenido
       </a>
-      <Header />
+      <Header onNavigate={navigate} />
+      {entered ? <>
       <PageMotion contentKey={filter} />
       <main id="contenido">
-        <Hero />
-        <Statement />
-        <Areas />
+        <Hero onOpenProject={setActiveProject} />
         <section
           className="projects-section section"
           id="proyectos"
@@ -76,12 +106,11 @@ export default function App() {
           <div className="container">
             <FadeContent>
               <div className="section-heading">
-                <p className="eyebrow section-label">Proyectos seleccionados</p>
-                <h2 id="projects-title">Del problema al resultado.</h2>
+                <h2 id="projects-title">Proyectos.</h2>
                 <div className="projects-intro">
                   <p>
-                    Imágenes médicas, datos clínicos y salud pública. Cuatro
-                    proyectos para ver cómo pienso, construyo y evalúo.
+                    Imágenes médicas, salud y territorio. Cuatro proyectos para
+                    explorar cómo trabajo con datos.
                   </p>
                   <div
                     className="project-filters"
@@ -108,52 +137,7 @@ export default function App() {
             </FadeContent>
             <div className="project-results" id="project-results" key={filter}>
               {selected.some((project) => project.id === "segmentacion") && (
-                <AnimatedContent as="article" className="featured-project" distance={48}>
-                  <div className="featured-copy">
-                    <p className="project-type">Deep learning · Proyecto final UNC</p>
-                    <h3>{featured.title}</h3>
-                    <p>{featured.description}</p>
-                    <Tags tags={featured.tags} />
-                    <dl className="project-metrics">
-                      <div>
-                        <dt>Dice · hígado</dt>
-                        <dd>
-                          97,63<span>%</span>
-                        </dd>
-                      </div>
-                      <div>
-                        <dt>Dice macro · segmentos</dt>
-                        <dd>
-                          81,56<span>%</span>
-                        </dd>
-                      </div>
-                    </dl>
-                    <p className="metric-context">
-                      Resultados en el conjunto de test. Evaluación externa en
-                      seis casos clínicos. Evaluación académica, sin validación
-                      para uso clínico autónomo.
-                    </p>
-                    <div className="project-actions">
-                      <button
-                        className="button button-dark"
-                        onClick={() => setActiveProject(featured)}
-                      >
-                        Ver el caso completo
-                        <ArrowRight size={18} />
-                      </button>
-                      <a
-                        className="icon-button"
-                        aria-label="Abrir código de segmentación en GitHub"
-                        href={featured.links![0].href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GitFork size={21} />
-                      </a>
-                    </div>
-                  </div>
-                  <SegmentationExplorer />
-                </AnimatedContent>
+                <SegmentationStory project={featured} onOpenCase={() => setActiveProject(featured)} />
               )}
               <div className="project-grid">
                 {selected
@@ -189,17 +173,14 @@ export default function App() {
                             <ExternalLink size={14} />
                           </span>
                         </button>
-                      ) : (
-                        <button className="project-preview-text" onClick={() => setActiveProject(project)} aria-label="Ver el proyecto educativo de clasificación de síntomas">
-                          <span>4.920</span>
-                          <span>registros de síntomas<br />41 enfermedades</span>
-                          <ArrowUpRight size={26} aria-hidden="true" />
-                        </button>
-                      )}
+                      ) : null}
                       <h3>{project.title}</h3>
                       <p>{project.description}</p>
                       <ProjectPipeline steps={project.pipeline} />
                       <Tags tags={project.tags} />
+                      {project.id === "incendios" && <a className="text-link fire-site-link" href={project.links![0].href} target="_blank" rel="noopener noreferrer">
+                        Abrir la página<ArrowUpRight size={17} aria-hidden="true" />
+                      </a>}
                       <button
                         className="text-link card-link"
                         onClick={() => setActiveProject(project)}
@@ -268,48 +249,6 @@ export default function App() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-        <section
-          className="about-section section"
-          id="sobre-mi"
-          aria-labelledby="about-title"
-        >
-          <div className="container">
-            <FadeContent className="about-layout">
-              <h2 id="about-title">
-                Aprender.<br /><em>Y aplicarlo.</em>
-              </h2>
-              <div className="about-copy">
-                <p className="about-lead">
-                  La IA ya forma parte del presente. Me interesa entenderla,
-                  usarla con criterio y convertir lo aprendido en herramientas útiles.
-                </p>
-                <p>
-                  Busco oportunidades en datos e IA, tecnología médica, servicio
-                  técnico y calidad. En salud y también en otros sectores.
-                  Quiero seguir aprendiendo sobre el área regulatoria.
-                </p>
-              </div>
-            </FadeContent>
-            <AnimatedContent className="education-row" distance={30}>
-              <div className="education-label">
-                <span className="eyebrow">FORMACIÓN</span>
-                <span>Aprender y aplicar.</span>
-              </div>
-              <div>
-                <span className="education-status">GRADUADO · 2026</span>
-                <h3>Ingeniería Biomédica</h3>
-                <p>Universidad Nacional de Córdoba</p>
-              </div>
-              <div>
-                <span className="education-status">
-                  EN CURSO · FIN PREVISTO NOV. 2026
-                </span>
-                <h3>Diplomatura en Data Science</h3>
-                <p>Mundos E + Universidad Nacional de Córdoba</p>
-              </div>
-            </AnimatedContent>
           </div>
         </section>
         <section
@@ -400,6 +339,7 @@ export default function App() {
           </a>
         </div>
       </footer>
+      </> : <WelcomeGate onEnter={() => navigate(window.location.hash.slice(1) || "inicio")} />}
       <ProjectDialog
         project={activeProject}
         onClose={() => setActiveProject(null)}

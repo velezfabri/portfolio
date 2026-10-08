@@ -3,13 +3,13 @@ import { ArrowUpRight, FileText, Menu, Moon, Sun, X } from "lucide-react";
 import { profile } from "../content";
 
 const nav = [
-  { id: "areas", label: "Áreas" },
+  { id: "inicio", label: "Sobre mí" },
   { id: "proyectos", label: "Proyectos" },
   { id: "experiencia", label: "Experiencia" },
   { id: "contacto", label: "Contacto" },
 ];
 
-export function Header() {
+export function Header({ onNavigate }: { onNavigate: (id: string) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState(() =>
     typeof document !== "undefined" &&
@@ -48,7 +48,7 @@ export function Header() {
           className="wordmark"
           href="#inicio"
           aria-label="Fabricio Velez, inicio"
-          onClick={() => setMenuOpen(false)}
+          onClick={event => { event.preventDefault(); setMenuOpen(false); onNavigate("inicio"); }}
         >
           <span className="monogram">
             fv<span>.</span>
@@ -66,7 +66,7 @@ export function Header() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              onClick={() => setMenuOpen(false)}
+              onClick={event => { event.preventDefault(); setMenuOpen(false); onNavigate(item.id); }}
             >
               {item.label}
             </a>

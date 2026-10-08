@@ -5,6 +5,7 @@ import "./styles.css";
 import "./visual-system.css";
 import "./motion.css";
 import "./editorial.css";
+import "./journey.css";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

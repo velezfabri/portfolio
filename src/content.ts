@@ -173,25 +173,29 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "chatbot",
-    pipeline: ["Síntomas", "Modelos", "Random Forest", "Streamlit"],
-    number: "04",
-    category: "IA",
-    title: "Clasificar síntomas incompletos",
-    subtitle: "Chatbot educativo sobre enfermedades",
-    description:
-      "Preparación de datos y comparación de clasificadores multiclase para un proyecto educativo con Streamlit.",
-    tags: ["Python", "scikit-learn", "Streamlit"],
-    question:
-      "¿Cómo se comportan distintos clasificadores al trabajar con registros de síntomas incompletos?",
+    id: "incendios",
+    pipeline: ["Fuentes oficiales", "Python", "Cruce espacial", "Web interactiva"],
+    number: "04", category: "Datos", title: "Incendios en Córdoba",
+    subtitle: "Datos oficiales y observaciones satelitales en una historia interactiva",
+    description: "Una página para explorar incendios reportados y cruzar áreas de IDECOR con observaciones satelitales de NASA FIRMS.",
+    tags: ["Python", "NASA FIRMS", "GeoJSON", "Visualización web"],
+    question: "¿Cómo relacionar los incendios documentados en Córdoba con observaciones satelitales, respetando las diferencias entre las fuentes?",
     work: [
-      "Preparé 4.920 registros correspondientes a 41 enfermedades.",
-      "Comparé clasificadores multiclase y evalué su desempeño.",
-      "Probé un escenario con 30 % de los síntomas removidos aleatoriamente.",
+      "Organicé series nacionales y datos provinciales de incendios, con sus fuentes y coberturas.",
+      "Crucé detecciones VIIRS NOAA-20 de NASA FIRMS con polígonos oficiales de IDECOR y ventanas de fecha local.",
+      "Construí una página interactiva con gráficos, un visor de los dos eventos y descargas de los datos publicados.",
     ],
-    result:
-      "Random Forest obtuvo 97,6 % de exactitud en esa prueba con síntomas removidos. El proyecto reúne análisis de datos, clasificación y una interfaz educativa.",
-    note: "Proyecto educativo · 2026. La métrica describe esa prueba y no una capacidad de diagnóstico clínico.",
+    result: "El cruce publicado reúne 256 detecciones térmicas en El Durazno y 1.099 en Capilla del Monte durante los primeros cinco días de cada evento, dentro de sus polígonos finales.",
+    note: "Proyecto de análisis de datos. Cada punto es una observación satelital; no equivale a un incendio adicional ni mide directamente el daño o la superficie quemada.",
+    links: [
+      { label: "Abrir la página", href: "https://incendios-cordoba.vercel.app/" },
+      { label: "Código en GitHub", href: "https://github.com/velezfabri/Incendios-Cordoba" },
+    ],
+    images: [{
+      src: "incendios-cruce.png", width: 1600, height: 900, label: "Cruce satelital",
+      alt: "Polígonos de los incendios de El Durazno y Capilla del Monte con las detecciones satelitales coincidentes de NASA FIRMS.",
+      caption: "Visualización estática de los polígonos y detecciones del conjunto publicado en el repositorio. Los dos eventos se muestran a escalas independientes.",
+    }],
   },
 ];
 

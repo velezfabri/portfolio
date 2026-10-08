@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motionSettings } from "../motion-settings";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,13 +28,13 @@ export function PageMotion({ contentKey }: { contentKey: string }) {
       "(min-width: 851px) and (prefers-reduced-motion: no-preference)",
       () => {
         gsap.to(".hero-portrait", {
-          y: -28,
+          y: motionSettings.portrait.distance,
           ease: "none",
           scrollTrigger: {
             trigger: "#inicio",
             start: "top top",
             end: "bottom top",
-            scrub: 0.6,
+            scrub: motionSettings.portrait.scrub,
           },
         });
       },

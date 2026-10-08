@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SplitText as GSAPSplitText } from "gsap/SplitText";
+import { motionSettings } from "../motion-settings";
 
 gsap.registerPlugin(GSAPSplitText);
 
@@ -33,13 +34,13 @@ export function SplitText({
         });
         gsap.fromTo(
           split.chars,
-          { opacity: 0, y: 28 },
+          { opacity: 0, y: motionSettings.name.distance },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: motionSettings.name.duration,
             delay,
-            stagger: 0.026,
+            stagger: motionSettings.name.stagger,
             ease: "power3.out",
             clearProps: "opacity,transform",
           },

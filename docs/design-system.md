@@ -4,7 +4,7 @@
 
 Portfolio de ingeniería biomédica, datos e IA para personas que contratan o colaboran en proyectos. Lenguaje editorial, tipografía grande y movimiento que conecta la presentación con el trabajo. CSS nativo y GSAP; se conserva la identidad del portfolio anterior.
 
-Lectura de Taste Skill: portfolio técnico con una presentación personal y una experiencia memorable, sin esconder la evidencia de los proyectos. `DESIGN_VARIANCE: 8`, `MOTION_INTENSITY: 8`, `VISUAL_DENSITY: 3`. La variación permite composiciones distintas; el movimiento se concentra en un capítulo de scroll y en respuestas de interacción; la densidad baja permite leer rápidamente.
+Lectura de Taste Skill: portfolio técnico con una presentación personal y una experiencia memorable, sin esconder la evidencia de los proyectos. `DESIGN_VARIANCE: 7`, `MOTION_INTENSITY: 7`, `VISUAL_DENSITY: 4`. Se preserva la identidad, se agrupa el contenido personal y se concentra el movimiento en la historia del proyecto y la respuesta a las acciones.
 
 ## Identidad
 
@@ -17,27 +17,23 @@ Lectura de Taste Skill: portfolio técnico con una presentación personal y una 
 
 ## Recorrido
 
-1. **Presentación:** nombre grande, título profesional y una frase de valor. CV, correo, teléfono y GitHub accesibles desde el inicio. La fotografía original acompaña la primera vista.
-2. **Historia personal, en la primera sección:** 24 años, Ushuaia, mudanza a Córdoba a los 17, graduación en junio de 2026, diplomatura en curso, inglés, jiu-jitsu y gimnasio.
-3. **Transición pixelada:** un breve párrafo se revela palabra por palabra con el scroll. En escritorio de al menos 1024 px y 700 px de alto, el bloque se fija durante una distancia equivalente al 65 % del viewport. Se conserva el scroll nativo. En pantallas menores, permanece en el flujo normal.
-4. **Áreas:** datos e IA ocupan una superficie mayor; tecnología médica y calidad complementan el perfil. Se conservan las herramientas originales.
-5. **Proyectos:** un caso destacado, dos proyectos con capturas y un proyecto educativo con cifras documentadas. Filtros y detalles siguen disponibles.
-6. **Experiencia:** recorrido por instituciones con tareas en desplegables nativos. CV completo enlazado.
-7. **Formación:** título y diplomatura, con su estado documentado.
-8. **Contacto:** título grande, botón de correo, dirección copiable, teléfono, LinkedIn, GitHub y descarga del CV.
+1. **Entrada interactiva:** botón para iniciar el recorrido. El menú permite entrar a una sección directamente; el CV funciona desde esta pantalla. La entrada se recuerda durante la sesión.
+2. **Presentación, una sola sección:** nombre, foto, biografía, formación y habilidades técnicas. Contenedor de 1080 px para centrar la composición; separación texto/foto de 48 px. Las herramientas abren casos concretos o enlazan a la experiencia.
+3. **Proyectos:** segmentación hepática primero; después reingresos hospitalarios, ENFR 2018 e incendios de Córdoba. Los filtros conservan los controles legibles en ambos temas.
+4. **Segmentación al bajar:** cinco capítulos siguen las escenas reales del video. En escritorio amplio, la visualización permanece a un lado y el scroll controla el tiempo del video. CSS sticky y GSAP, sin bloquear el scroll. En pantallas pequeñas hay botones para elegir etapas; movimiento reducido muestra todas las descripciones.
+5. **Experiencia profesional:** instituciones y tareas en desplegables, con enlace al CV.
+6. **Contacto:** correo, copia de dirección, teléfono, LinkedIn, GitHub y CV.
 
-## Interacciones y movimiento
+## Movimiento
 
-- `SplitText` revela el nombre al entrar; las acciones principales no esperan su finalización.
-- `AnimatedContent`, `FadeContent` y `SpotlightCard` mantienen entradas suaves y revelado inmediato al recibir foco.
-- `Statement` usa `gsap.matchMedia` para adaptar el capítulo de scroll y limpiar efectos en cambios de breakpoint y desmontaje.
-- La comparación hepática usa un `input type="range"` nativo, operable con mouse, touch y teclado. Un cambio de variable CSS mueve la separación entre referencia y predicción; no provoca renderizados continuos de React.
-- Los dos cortes se muestran mediante encuadre CSS de la misma imagen original, a la misma escala. El archivo completo, con etiquetas y leyenda de Couinaud, continúa disponible en el detalle del caso.
-- Cuatro botones permiten leer las etapas de la cascada de segmentación. Son una explicación del trabajo realizado; no ejecutan inferencia sobre nuevas imágenes.
-- Hover en fotos, capturas, tarjetas, flechas y CTA de contacto. Foco visible y controles de al menos 44 px.
-- Cambios de filtro y de etapa tienen transiciones breves. El alto del texto de etapas reserva espacio en móvil.
-- Los filtros y desplegables recalculan las posiciones de ScrollTrigger.
-- Movimiento reducido: sin fijado de la transición, parallax, animación de palabras ni entradas animadas. Todo el contenido permanece visible y los controles funcionan.
+- Nombre: `stagger` de 0,07 segundos; duración de cada letra 0,8 segundos. Se controla en `src/motion-settings.ts`.
+- Feedback de botones: traslación y presión breves; flechas con un pequeño impulso. CSS en `src/journey.css`.
+- Video: original de 20 segundos con audio, reproducible bajo acción del usuario. Copia 720p sin audio y con fotogramas clave cada 0,5 segundos para los cambios de posición al bajar. Colores e imágenes originales conservados.
+- El reproductor completo abre en un diálogo nativo y se pausa al cerrar. Tiene controles y descripciones VTT en español.
+- Comparación entre referencia y predicción conservada en un desplegable. El slider es nativo y operable con mouse, touch y teclado.
+- GSAP usa matchMedia y limpieza de efectos. No se registra un manejador continuo de scroll en React; el estado cambia únicamente al pasar de capítulo.
+- Todo contenido y todo control permanece disponible con movimiento reducido; la historia usa un flujo estático.
+- La tipografía pixelada queda integrada al final de la presentación. `Statement.tsx` y `Areas.tsx` se conservan como referencias de la versión anterior, pero no se montan como etapas separadas.
 
 ## Herramientas y referencias
 

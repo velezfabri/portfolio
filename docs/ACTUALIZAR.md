@@ -6,7 +6,7 @@ Página pública: https://portfolio-six-navy-88.vercel.app/
 
 ## Desde GitHub, sin instalar programas
 
-1. Descargar y descomprimir `portfolio-cult-ui-y-taste.zip`.
+1. Descargar y descomprimir `portfolio-historia-y-video.zip`.
 2. Abrir el repositorio y elegir **Add file → Upload files**.
 3. Arrastrar el contenido descomprimido: `src`, `docs`, `public` y `THIRD_PARTY.md` deben quedar en la raíz del repositorio. Reemplazar los archivos con el mismo nombre; no crear una carpeta contenedora adicional.
 4. Confirmar con **Commit changes** en la rama conectada con Vercel.
@@ -16,23 +16,22 @@ El ZIP incluye únicamente archivos cambiados o añadidos. No incluye `node_modu
 
 ## Qué cambia
 
-- Nombre en gran escala, frase breve y CV/contacto desde la primera vista.
-- Historia personal conservada en la primera sección junto al recorrido de tu fotografía.
-- Párrafo de Cult UI con revelación de palabras al hacer scroll y un capítulo breve fijado solo en escritorio.
-- Áreas asimétricas y proyectos con más espacio y mejor jerarquía.
-- Comparación deslizante entre referencia manual y predicción del proyecto hepático; etapas del proceso seleccionables.
-- Experiencia con desplegables y contacto destacado, respetando el modo claro u oscuro.
+- Entrada por click y presentación unificada con biografía, formación y habilidades.
+- Texto y foto más próximos; letras con mayor separación temporal.
+- Segmentación con una historia de cinco capítulos y video original.
+- Dashboard de reingresos, mapa ENFR e incendios de Córdoba en ese orden.
+- Respuesta de movimiento en botones, experiencia profesional y contacto.
+- Fuente editable del video conservada en `video-source/`.
 
 ## Comprobación después de publicar
 
-1. Revisar en computadora y celular el nombre, la foto y los botones de CV/contacto.
-2. Recorrer el capítulo pixelado, volver arriba y usar las anclas del menú.
-3. Probar Todos, Inteligencia artificial y Datos en ambos temas.
-4. Mover la comparación con mouse, touch y flechas de teclado; recorrer las cuatro etapas.
-5. Abrir los casos, las imágenes de ENFR y los desplegables de experiencia; cerrar los diálogos con Escape.
-6. Probar correo, teléfono, copia de email y CV.
-7. Activar movimiento reducido en el dispositivo: el texto debe seguir visible y el scroll funcionar sin fijado.
+1. Entrar desde el botón, y en otra sesión desde el menú. Verificar CV, teclado y anclas.
+2. Bajar por la historia de segmentación, volver hacia arriba y elegir etapas desde los botones.
+3. Abrir el video completo, activar sonido, pausar y cerrar con Escape.
+4. Probar filtros, casos, comparación de segmentos y galerías de ENFR en los dos temas.
+5. Revisar una pantalla móvil y activar movimiento reducido; las descripciones y acciones deben seguir disponibles.
+6. Probar el enlace de incendios, correo, teléfono, copia de email y CV.
 
-La compilación, TypeScript, los recursos/anclas y el contraste numérico fueron comprobados. Queda pendiente la revisión visual en navegador y Lighthouse. Detalle en `docs/analisis-frontend.md`.
+Los parámetros editables están en `docs/MOVIMIENTO.md`; la fuente y los recursos del video se describen en `docs/VIDEO.md`. La verificación realizada y sus límites figuran en `docs/analisis-frontend.md`.
 
-Base de esta actualización: commit `ab11b33`. Si editaste estos archivos después, revisar sus diferencias antes de reemplazarlos. El código publicado no depende de instalar Taste Skill ni UI/UX Pro Max.
+Base de esta actualización: commit `dc93e26` de GitHub. Revisar diferencias si editaste los mismos archivos después. El código publicado no depende de instalar Taste Skill ni UI/UX Pro Max.

@@ -3,6 +3,7 @@
 import { createElement, useEffect, useRef, type HTMLAttributes } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motionSettings } from "../motion-settings";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ type Props = HTMLAttributes<HTMLElement> & {
 export function AnimatedContent({
   children,
   as = "div",
-  distance = 44,
+  distance = motionSettings.reveal.distance,
   delay = 0,
   replay = false,
   ...props
@@ -33,13 +34,13 @@ export function AnimatedContent({
         {
           y: 0,
           opacity: 1,
-          duration: 0.75,
+          duration: motionSettings.reveal.duration,
           delay,
           ease: "power3.out",
           clearProps: "opacity,transform",
           scrollTrigger: {
             trigger: element,
-            start: "top 88%",
+            start: motionSettings.reveal.start,
             once: !replay,
             toggleActions: "play none none reverse",
           },

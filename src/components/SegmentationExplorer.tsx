@@ -1,15 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 
-const stages = [
-  { name: "Tomografía", title: "El punto de partida: una imagen médica.", text: "El proyecto trabaja con tomografías 3D. Cada volumen aporta la información anatómica que reciben las redes de segmentación." },
-  { name: "Hígado", title: "Primero, identificar el órgano.", text: "La primera 3D U-Net segmenta el hígado. Su resultado da paso a la segunda red de la cascada." },
-  { name: "Couinaud", title: "Después, distinguir sus ocho segmentos.", text: "La segunda 3D U-Net identifica los segmentos de Couinaud. Las regiones de color permiten comparar la referencia manual con la predicción." },
-  { name: "Evaluación", title: "Medir, visualizar y explicar.", text: "Evalué la segmentación con Dice en el conjunto de test y en seis casos externos. Utilicé 3D Slicer para visualizar imágenes médicas." },
-];
-
 export function SegmentationExplorer() {
-  const [stage, setStage] = useState(2);
   const compareRef = useRef<HTMLDivElement>(null);
   const image = `${import.meta.env.BASE_URL}images/resultado-test.png`;
   return (
@@ -33,22 +25,7 @@ export function SegmentationExplorer() {
           segmentos de Couinaud. La imagen completa y su leyenda están en el detalle del caso.
         </figcaption>
       </figure>
-      <div className="explorer-process">
-        <p className="process-label">Explorá cómo lo hice</p>
-        <div className="explorer-steps" role="group" aria-label="Elegir etapa del proyecto de segmentación">
-          {stages.map((item, index) => (
-            <button key={item.name} aria-pressed={stage === index} aria-controls="segmentation-stage" onClick={() => setStage(index)}>
-              {item.name}
-            </button>
-          ))}
-        </div>
-        <div className="explorer-description" id="segmentation-stage" aria-live="polite" aria-atomic="true">
-          <div key={stage} className="explorer-description-content">
-            <h4>{stages[stage].title}</h4>
-            <p>{stages[stage].text}</p>
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 }
